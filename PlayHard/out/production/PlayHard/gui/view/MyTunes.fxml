@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movierecsys.gui.controller.MovieRecController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Main">
    <top>
       <VBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
@@ -73,9 +72,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <TextField />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:" />
                      </children>
                   </HBox>
                   <ListView prefHeight="419.0" prefWidth="256.0" />
