@@ -96,7 +96,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </VBox>
-            <Line endX="344.1666564941406" layoutX="85.0" layoutY="71.0" startX="-100.0" />
+            <Line endX="335.0000305175781" layoutX="85.0" layoutY="71.0" startX="-100.0" />
          </children>
       </Pane>
    </left>
