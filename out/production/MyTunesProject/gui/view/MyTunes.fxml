@@ -38,8 +38,8 @@
                   <ListView prefHeight="419.0" prefWidth="256.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="New.." />
-                        <Button mnemonicParsing="false" text="Edit..." />
+                        <Button fx:id="newPlaylist" mnemonicParsing="false" onAction="#addPlaylist" text="New.." />
+                        <Button fx:id="editPlaylist" mnemonicParsing="false" onAction="#editPlaylist" text="Edit..." />
                         <Button mnemonicParsing="false" text="Delete" />
                      </children>
                   </HBox>

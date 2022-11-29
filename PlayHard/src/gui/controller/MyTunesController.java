@@ -27,6 +27,13 @@ public class MyTunesController implements Initializable {
         System.out.println("editSongClick");
         openEditSong();
     }
+    public void addPlaylist() throws IOException {
+        openAddPlaylist();
+    }
+
+    public void editPlaylist() throws IOException {
+        openEditPlaylist();
+    }
     public void openAddSong() throws IOException{
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/newSong.fxml"));
         Scene scene = new Scene(loader.load());
@@ -39,6 +46,27 @@ public class MyTunesController implements Initializable {
     }
     public void openEditSong() throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/editSong.fxml"));
+        Scene scene = new Scene(loader.load());
+        MyTunesController gameCon = loader.getController();
+
+        Stage stage = new Stage();
+        stage.setTitle("Edit a song");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void openAddPlaylist() throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/newPlaylist.fxml"));
+        Scene scene = new Scene(loader.load());
+        MyTunesController gameCon = loader.getController();
+
+        Stage stage = new Stage();
+        stage.setTitle("Add a playlist");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void openEditPlaylist() throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/editPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
         MyTunesController gameCon = loader.getController();
 
