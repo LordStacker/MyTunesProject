@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.view.EditSong"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="420.0" text="Edit song" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Line endX="320.0" startX="-100.0" />
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_RIGHT" prefHeight="175.0" prefWidth="100.0" translateY="-140.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="9.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="150.0" translateX="125.0" translateY="-150.0">
+               <children>
+                  <TextField />
+                  <TextField>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <ChoiceBox prefWidth="75.0" />
+                  <Button mnemonicParsing="false" text="More..." translateX="100.0" translateY="-26.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <Line endX="335.0000305175781" layoutX="85.0" layoutY="71.0" startX="-100.0" />
+         </children>
+      </Pane>
+   </left>
+   <right>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Save" translateX="115.0" translateY="75.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" text="Cancel" translateX="27.0" translateY="75.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </right>
+   <bottom>
+      <Line endX="220.0" startX="-200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
