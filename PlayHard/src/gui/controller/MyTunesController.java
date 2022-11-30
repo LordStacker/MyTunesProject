@@ -10,9 +10,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MyTunesController implements Initializable {
+
+    private ArrayList<Stage> listOfStages = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,12 +40,11 @@ public class MyTunesController implements Initializable {
     public void openAddSong() throws IOException{
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/newSong.fxml"));
         Scene scene = new Scene(loader.load());
-        MyTunesController gameCon = loader.getController();
-
-        Stage stage = new Stage();
-        stage.setTitle("Add a song");
-        stage.setScene(scene);
-        stage.show();
+        Stage stageAddSong = new Stage();
+        listOfStages.add(stageAddSong);
+        stageAddSong.setTitle("Add a song");
+        stageAddSong.setScene(scene);
+        stageAddSong.show();
     }
     public void openEditSong() throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/editSong.fxml"));
