@@ -56,7 +56,7 @@
                     <columns>
                       <TableColumn prefWidth="75.0" text="Name" />
                       <TableColumn prefWidth="75.0" text="Song" />
-                        <TableColumn prefWidth="104.79998779296875" text="Time" />
+                        <TableColumn prefWidth="94.4000030517578" text="Time" />
                     </columns>
                      <VBox.margin>
                         <Insets left="10.0" />
@@ -93,12 +93,12 @@
                      <children>
                         <ListView prefHeight="414.0" prefWidth="198.0">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </ListView>
-                        <Button mnemonicParsing="false" text="⬅">
+                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" text="⬅">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="7.0" />
                            </HBox.margin>
                         </Button>
                      </children>
