@@ -3,6 +3,7 @@ package gui;
 import java.net.URL;
 import java.util.Objects;
 
+import dal.SongsDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,7 @@ public class Main extends Application
         stage.setTitle("My Tunes");
         stage.centerOnScreen();
         stage.show();
+
     }
     public static void main(String[] args)
     {

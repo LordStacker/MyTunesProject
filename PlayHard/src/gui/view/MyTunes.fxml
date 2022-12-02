@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -38,15 +39,20 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="⏪">
+                        <Slider fx:id="volumeSlider" max="100.0" value="50.0">
                            <HBox.margin>
-                              <Insets left="50.0" />
+                              <Insets left="60.0" top="50.0" />
+                           </HBox.margin>
+                        </Slider>
+                        <Button fx:id="previousSongBtn" mnemonicParsing="false" onAction="#previousMedia" text="⏪">
+                           <HBox.margin>
+                              <Insets left="-110.0" />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" text="▷">
+                        <Button fx:id="playBtn" mnemonicParsing="false" onAction="#playMedia" prefHeight="26.0" prefWidth="41.0" text="▷/||">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" text="⏩">
+                        <Button fx:id="nextSongBtn" mnemonicParsing="false" onAction="#nextMedia" text="⏩">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin></Button>
@@ -86,7 +92,10 @@
                <children>
                   <HBox prefHeight="98.0" prefWidth="256.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SONG" />
+                        <Label fx:id="songLabel" prefHeight="18.0" prefWidth="256.0" text="Song">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin></Label>
                      </children>
                   </HBox>
                   <HBox prefHeight="414.0" prefWidth="215.0">
@@ -128,10 +137,10 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:" />
                      </children>
                   </HBox>
-                  <TableView prefHeight="409.0" prefWidth="325.0">
+                  <TableView fx:id="songsTable" prefHeight="409.0" prefWidth="325.0">
                     <columns>
-                      <TableColumn prefWidth="76.800048828125" text="Title" />
-                      <TableColumn prefWidth="72.79998779296875" text="Artist" />
+                      <TableColumn fx:id="titleSongs" prefWidth="76.800048828125" text="Title" />
+                      <TableColumn fx:id="artistSongs" prefWidth="72.79998779296875" text="Artist" />
                         <TableColumn prefWidth="76.800048828125" text="Category" />
                         <TableColumn prefWidth="99.199951171875" text="Time" />
                     </columns>
