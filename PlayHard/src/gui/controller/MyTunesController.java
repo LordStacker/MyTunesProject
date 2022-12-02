@@ -54,8 +54,9 @@ public class MyTunesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         //Playing Music
+        /*SongsDAO.getAllSongs();*/
         SongsDAO.getAllSongs();
-        SongsDAO.getTitleSong();
+        System.out.println(SongsDAO.getTitleSong().toString());
         media = new Media(SongsDAO.setMedia(songId));
         mediaPlayer = new MediaPlayer(media);
         songLabel.setText(SongsDAO.getNameSong(songId));
