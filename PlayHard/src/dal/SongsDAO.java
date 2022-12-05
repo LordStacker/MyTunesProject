@@ -1,5 +1,6 @@
 package dal;
 
+
 import be.Songs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArrayBase;
@@ -34,7 +35,7 @@ public class SongsDAO {
             for (File f: file) {
                 System.out.println(f);
                 songList.add(f);
-                Songs songListed = new Songs("random","random2", 11, file.length, "poopies", f);
+                Songs songListed = new Songs("random","random2", 11, file.length, "atanas", f);
                 songs.add(songListed);
                /* System.out.println(songs);*/
                 for(int i = 0; i< songs.size(); i++){

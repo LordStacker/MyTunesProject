@@ -1,14 +1,18 @@
 package be;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.io.File;
 import java.util.ArrayList;
 
 public class Songs {
-
+    private SimpleStringProperty title;
+    private SimpleStringProperty artist;
+    private SimpleStringProperty category;
+    private SimpleDoubleProperty time;
     private int id;
-    private String artist;
-    private String category;
-    private double time;
     /*
     TODO Move logic DAO -> Songs;
     TODO Singular NAMES FOR EVERYTHING;
@@ -16,17 +20,16 @@ public class Songs {
 
     private File source;
 
-    private String title;
 
 
 
     public Songs(String artist, String title, double time, int id, String category, File source){
-        this.artist = artist;
-        this.title = title;
-        this.time = time;
+        this.title = new SimpleStringProperty(title);
+        this.artist = new SimpleStringProperty(artist);
+        this.category = new SimpleStringProperty(category);
+        this.time = new SimpleDoubleProperty(time);
         this.id = id;
-        this.category = category;
-        this.source = source;
+
     }
 
 
@@ -44,33 +47,18 @@ public class Songs {
         return this.source;
     }
 
-    public String getTitle(){
-        return title;
+    public String getTitle (){return  title.get();}
+    public double getTime() {return time.get();}
+    public String getArtist() {
+        return artist.get();
     }
-
-    public void setTitle(String title){
-        this.title = title;
+    public String getCategory() {
+        return category.get();
     }
-
-    public double getTime() {
-        return time;
-    }
-
-    public String getArtist(){
-        return artist;
-    }
-
-    public void setArtist(String artist){
-        this.artist = artist;
-    }
-
-    public String getCategory(){
-        return category;
-    }
-
-    public void setCategory(String category){
-        this.category = category;
-    }
+    public void setTitle(String title) {this.title =new SimpleStringProperty(title);}
+    public void setArtist(String artist) {this.artist =new SimpleStringProperty(artist);}
+    public void setCategory(String category) {this.category = new SimpleStringProperty(category);}
+    public void setTime(double time) {this.time = new SimpleDoubleProperty(time);}
 
     @Override
     public String toString() {

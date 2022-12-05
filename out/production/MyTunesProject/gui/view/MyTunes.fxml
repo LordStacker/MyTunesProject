@@ -139,10 +139,10 @@
                   </HBox>
                   <TableView fx:id="songsTable" prefHeight="409.0" prefWidth="325.0">
                     <columns>
-                      <TableColumn fx:id="titleSongs" prefWidth="76.800048828125" text="Title" />
-                      <TableColumn fx:id="artistSongs" prefWidth="72.79998779296875" text="Artist" />
-                        <TableColumn prefWidth="76.800048828125" text="Category" />
-                        <TableColumn prefWidth="99.199951171875" text="Time" />
+                      <TableColumn fx:id="titleColumn" prefWidth="76.800048828125" text="Title" />
+                      <TableColumn fx:id="artistColumn" prefWidth="72.79998779296875" text="Artist" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="76.800048828125" text="Category" />
+                        <TableColumn fx:id="timeColumn" prefWidth="99.199951171875" text="Time" />
                     </columns>
                      <VBox.margin>
                         <Insets right="10.0" />
