@@ -1,4 +1,5 @@
 package gui.controller;
+import be.Songs;
 import dal.SongsDAO;
 
 import gui.Main;
@@ -12,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -25,6 +27,12 @@ import java.util.ResourceBundle;
 
 
 public class MyTunesController implements Initializable {
+    //table columns
+    public TableView<Songs> songsTable;
+    public TableColumn<Songs, String> titleColumn;
+    public TableColumn<Songs, String> artistColumn;
+    public TableColumn<Songs, String> categoryColumn;
+    public TableColumn<Songs, Integer> timeColumn;
 
     private ArrayList<Stage> listOfStages = new ArrayList<>();
 
@@ -43,15 +51,19 @@ public class MyTunesController implements Initializable {
 
     public MediaPlayer mediaPlayer;
 
-    public TableColumn titleSongs;
 
-    public TableColumn artistSongs;
-
-    public TableView songsTable;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //table view
+
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        artistColumn.setCellValueFactory(new PropertyValueFactory<>("Artist"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        songsTable.setItems(SongsDAO.getAllSongs());
+
 
         //Playing Music
         /*SongsDAO.getAllSongs();*/
