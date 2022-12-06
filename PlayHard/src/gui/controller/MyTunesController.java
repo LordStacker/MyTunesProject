@@ -1,8 +1,8 @@
 package gui.controller;
+
 import be.Songs;
 import dal.SongsDAO;
-
-import gui.Main;
+import gui.MyTunes;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -10,16 +10,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,9 +65,6 @@ public class MyTunesController implements Initializable {
 
 
         //Playing Music
-        /*SongsDAO.getAllSongs();*/
-        SongsDAO.getAllSongs();
-        System.out.println(SongsDAO.getTitleSong().toString());
         media = new Media(SongsDAO.setMedia(songId));
         mediaPlayer = new MediaPlayer(media);
         songLabel.setText(SongsDAO.getNameSong(songId));
@@ -101,7 +97,7 @@ public class MyTunesController implements Initializable {
         openEditPlaylist();
     }
     public void openAddSong() throws IOException{
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/newSong.fxml"));
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newSong.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stageAddSong = new Stage();
         listOfStages.add(stageAddSong);
@@ -113,7 +109,7 @@ public class MyTunesController implements Initializable {
         stageAddSong.show();
     }
     public void openEditSong() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/editSong.fxml"));
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editSong.fxml"));
         Scene scene = new Scene(loader.load());
         MyTunesController gameCon = loader.getController();
 
@@ -123,9 +119,8 @@ public class MyTunesController implements Initializable {
         stage.show();
     }
     public void openAddPlaylist() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/newPlaylist.fxml"));
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
-        MyTunesController gameCon = loader.getController();
 
         Stage stage = new Stage();
         stage.setTitle("Add a playlist");
@@ -134,9 +129,8 @@ public class MyTunesController implements Initializable {
     }
 
     public void openEditPlaylist() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/editPlaylist.fxml"));
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
-        MyTunesController gameCon = loader.getController();
 
         Stage stage = new Stage();
         stage.setTitle("Edit a song");
