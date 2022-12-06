@@ -10,10 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -50,6 +47,8 @@ public class MyTunesController implements Initializable {
 
     public MediaPlayer mediaPlayer;
 
+    @FXML
+    private Button playBtn;
 
 
 
@@ -107,6 +106,7 @@ public class MyTunesController implements Initializable {
 
         stageAddSong.setScene(scene);
         stageAddSong.show();
+        stageAddSong.setResizable(false);
     }
     public void openEditSong() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editSong.fxml"));
@@ -117,6 +117,7 @@ public class MyTunesController implements Initializable {
         stage.setTitle("Edit a song");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
     public void openAddPlaylist() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newPlaylist.fxml"));
@@ -126,6 +127,7 @@ public class MyTunesController implements Initializable {
         stage.setTitle("Add a playlist");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     public void openEditPlaylist() throws IOException {
@@ -136,15 +138,18 @@ public class MyTunesController implements Initializable {
         stage.setTitle("Edit a song");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
     public void playMedia(ActionEvent actionEvent) {
 
         if(running == false){
             mediaPlayer.play();
+            playBtn.setText("⏸");
             running=true;
         }
         else {
             mediaPlayer.pause();
+            playBtn.setText("▶");
             running=false;
         }
     }
@@ -182,6 +187,9 @@ public class MyTunesController implements Initializable {
             songLabel.setText(SongsDAO.getNameSong(songId));
             mediaPlayer.play();
         }
+    }
+    public void exitApp() {
+        System.exit(1);
     }
 
 
