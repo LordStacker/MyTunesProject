@@ -1,11 +1,10 @@
 package be;
 
+import bll.util.IdGen;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Songs {
     private SimpleStringProperty title;
@@ -23,12 +22,12 @@ public class Songs {
 
 
 
-    public Songs(String artist, String title, double time, int id, String category, File source){
+    public Songs(String artist, String title, double time, String category /*,File source*/){
         this.title = new SimpleStringProperty(title);
         this.artist = new SimpleStringProperty(artist);
         this.category = new SimpleStringProperty(category);
         this.time = new SimpleDoubleProperty(time);
-        this.id = id;
+        this.id = IdGen.createSongId();
 
     }
 

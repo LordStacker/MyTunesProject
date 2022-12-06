@@ -3,22 +3,15 @@ package dal;
 
 import be.Songs;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArrayBase;
 import javafx.collections.ObservableList;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.File;
-import java.io.Serial;
 import java.util.ArrayList;
 
 public class SongsDAO {
 
     private ArrayList<File> songList = new ArrayList<>();
     private File[] file;
-
-    private Songs song ;
-
-    private javafx.scene.media.Media media;
 
     private ObservableList<Songs> songs = FXCollections.observableArrayList();
 
@@ -35,16 +28,30 @@ public class SongsDAO {
             for (File f: file) {
                 System.out.println(f);
                 songList.add(f);
-                Songs songListed = new Songs("random","random2", 11, file.length, "atanas", f);
+            }
+            for(int i=0 ; i<songList.size();i++){
+                String title;
+                String[] titles = new String[0];
+                title = songList.get(i).toString();
+                titles = title.split("-", 2);
+                Songs songListed = new Songs(titles[1],titles[1], 11, "atanas");
                 songs.add(songListed);
-               /* System.out.println(songs);*/
-                for(int i = 0; i< songs.size(); i++){
-                    System.out.println(songs.get(i).toString());
-                }
-                //Getting all the files inside the ArrayList
+            }
+
+        }
+        System.out.println(songs.toString());
+        return songs;
+    }
+
+    private int getNextId(){
+        ObservableList<Songs>  songsId = getAllSongs();
+        int lastId= 0;
+        for(Songs s : songsId){
+            if(lastId<s.getId()){
+                lastId = s.getId();
             }
         }
-        return songs;
+        return lastId+1;
     }
 
     public ObservableList<Songs> getSongs() {
@@ -60,6 +67,7 @@ public class SongsDAO {
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
                 titleSongs.add(titles[1]);
+                System.out.println("aquii"+titleSongs.get(i));
 
             }
         }

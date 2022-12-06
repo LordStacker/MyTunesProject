@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class Main extends Application
+public class MyTunes extends Application
 {
     @Override
     public void start(Stage stage) throws Exception
