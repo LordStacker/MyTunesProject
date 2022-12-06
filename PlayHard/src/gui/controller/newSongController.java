@@ -1,6 +1,6 @@
 package gui.controller;
 
-import be.Songs;
+import be.Song;
 import dal.SongsDAO;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;

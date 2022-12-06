@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 import java.io.File;
 
-public class Songs {
+public class Song {
     private SimpleStringProperty title;
     private SimpleStringProperty artist;
     private SimpleStringProperty category;
@@ -21,7 +21,7 @@ public class Songs {
 
 
 
-    public Songs(String artist, String title, double time, String category){
+    public Song(String artist, String title, double time, String category){
         this.title = new SimpleStringProperty(title);
         this.artist = new SimpleStringProperty(artist);
         this.category = new SimpleStringProperty(category);

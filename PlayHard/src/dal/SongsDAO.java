@@ -1,7 +1,7 @@
 package dal;
 
 
-import be.Songs;
+import be.Song;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,14 +13,14 @@ public class SongsDAO {
     private ArrayList<File> songList = new ArrayList<>();
     private File[] file;
 
-    private ObservableList<Songs> songs = FXCollections.observableArrayList();
+    private ObservableList<Song> songs = FXCollections.observableArrayList();
 
     private ArrayList<String> titleSongs = new ArrayList<>();
 
     private static final String SONGS_SOURCE = "PlayHard/data/songs";
 
 
-    public ObservableList<Songs> getAllSongs(){
+    public ObservableList<Song> getAllSongs(){
         File folder = new File(SONGS_SOURCE);
         this.file = folder.listFiles();
         //Filing the array with the info of the folder
@@ -34,7 +34,7 @@ public class SongsDAO {
                 String[] titles = new String[0];
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
-                Songs songListed = new Songs(titles[1],titles[1], 11, "atanas");
+                Song songListed = new Song(titles[1],titles[1], 11, "atanas");
                 songs.add(songListed);
             }
 
@@ -44,9 +44,9 @@ public class SongsDAO {
     }
 
     private int getNextId(){
-        ObservableList<Songs>  songsId = getAllSongs();
+        ObservableList<Song>  songsId = getAllSongs();
         int lastId= 0;
-        for(Songs s : songsId){
+        for(Song s : songsId){
             if(lastId<s.getId()){
                 lastId = s.getId();
             }
@@ -54,7 +54,7 @@ public class SongsDAO {
         return lastId+1;
     }
 
-    public ObservableList<Songs> getSongs() {
+    public ObservableList<Song> getSongs() {
         return songs;
     }
 
