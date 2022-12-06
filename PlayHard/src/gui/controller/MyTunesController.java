@@ -1,6 +1,6 @@
 package gui.controller;
 
-import be.Songs;
+import be.Song;
 import dal.SongsDAO;
 import gui.MyTunes;
 import javafx.beans.value.ChangeListener;
@@ -24,11 +24,11 @@ import java.util.ResourceBundle;
 
 public class MyTunesController implements Initializable {
     //table columns
-    public TableView<Songs> songsTable;
-    public TableColumn<Songs, String> titleColumn;
-    public TableColumn<Songs, String> artistColumn;
-    public TableColumn<Songs, String> categoryColumn;
-    public TableColumn<Songs, Integer> timeColumn;
+    public TableView<Song> songsTable;
+    public TableColumn<Song, String> titleColumn;
+    public TableColumn<Song, String> artistColumn;
+    public TableColumn<Song, String> categoryColumn;
+    public TableColumn<Song, Integer> timeColumn;
 
     private ArrayList<Stage> listOfStages = new ArrayList<>();
 

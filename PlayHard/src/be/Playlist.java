@@ -15,7 +15,7 @@ public class Playlist implements Serializable {
     private String name;
     private String songs;
     private Double time;
-    private final ArrayList<Songs> songsInPlaylist;
+    private final ArrayList<Song> songsInPlaylist;
 
 
     public Playlist(String name, String songs , double time){
@@ -55,14 +55,14 @@ public class Playlist implements Serializable {
         DoubleProperty propertyTime = new SimpleDoubleProperty(time);
         return propertyTime;
     }
-    public ArrayList<Songs> getSongsInPlaylist() {
+    public ArrayList<Song> getSongsInPlaylist() {
         return songsInPlaylist;
     }
-    public void addSong(Songs songs){
+    public void addSong(Song songs){
         songsInPlaylist.add(songs);
     }
 
-    public void removeSong(Songs song) {
+    public void removeSong(Song song) {
         songsInPlaylist.remove(songs);
     }
     public int getId() {
