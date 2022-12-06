@@ -3,6 +3,7 @@ package be;
 import bll.util.IdGen;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.io.File;
 
@@ -11,18 +12,16 @@ public class Songs {
     private SimpleStringProperty artist;
     private SimpleStringProperty category;
     private SimpleDoubleProperty time;
-    private int id;
-    /*
-    TODO Move logic DAO -> Songs;
-    TODO Singular NAMES FOR EVERYTHING;
-     */
+    private int id = 0;
+    private String fileName;
+
 
     private File source;
 
 
 
 
-    public Songs(String artist, String title, double time, String category /*,File source*/){
+    public Songs(String artist, String title, double time, String category){
         this.title = new SimpleStringProperty(title);
         this.artist = new SimpleStringProperty(artist);
         this.category = new SimpleStringProperty(category);
@@ -44,6 +43,13 @@ public class Songs {
     public File setSource(File source){
         this.source = source;
         return this.source;
+    }
+    public void setFilePath(String path){
+        this.fileName = path;
+    }
+    public StringProperty getFileName(){
+        StringProperty propertyFileName = new SimpleStringProperty(fileName);
+        return propertyFileName;
     }
 
     public String getTitle (){return  title.get();}
