@@ -1,6 +1,7 @@
 package dal.db;
 
 import be.Song;
+import dal.SongsDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ public class SongDBDao {
 
     private DataBaseConnection dataBaseConnection;
 
-    private SongDBDao(){
+    public SongDBDao(){
         dataBaseConnection = new DataBaseConnection();
 
     }
@@ -22,15 +23,22 @@ public class SongDBDao {
     public List<Song> getAllSongs() throws SQLException{
         ArrayList<Song> allSongs = new ArrayList<>();
     try(Connection connection = dataBaseConnection.getConnection()) {
-        String sql = "SELECT * FROM Song;";
+        String sql = "SELECT * FROM Songs;";
 
         Statement statement = connection.createStatement();
 
         if(statement.execute(sql)){
             ResultSet resultSet = statement.getResultSet();
             while(resultSet.next()){
-                String  test = resultSet.getString("Song");
-                System.out.println(test);
+                int  SongId = resultSet.getInt("SongID");
+                String  Tittle = resultSet.getString("Title");
+                String Source = resultSet.getString("Source");
+                String Artist = resultSet.getString("Artist");
+                String Category = resultSet.getString("Category");
+                double Time = resultSet.getDouble("Time");
+                System.out.println(SongId + " " + Tittle + " " + " " + Source + " " + Artist + " " + Category + " " + Time + " ");
+
+
             }
 
         }

@@ -12,16 +12,17 @@ import javafx.collections.ObservableList;
 
 public class Playlist implements Serializable {
     private int id = 0;
-    private String name;
+    private SimpleStringProperty name;
     private String songs;
-    private Double time;
+    private SimpleDoubleProperty time;
     private final ArrayList<Song> songsInPlaylist;
 
 
-    public Playlist(String name, String songs , double time){
-        this.name = name;
-        this.songs = songs;
-        this.time = time;
+    public Playlist(String name/*, String songs */, double time, int id){
+        this.name = new SimpleStringProperty(name);
+       /* this.songs = songs;*/
+        this.time = new SimpleDoubleProperty(time);
+        this.id = id;
         songsInPlaylist = new ArrayList<>();
         /*
         try{
@@ -34,27 +35,21 @@ public class Playlist implements Serializable {
     }
 
     public void setName(String name){
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
     }
     public void setSongs(String songs){
         this.songs = songs;
     }
-    public void setTime(Double time){
-        this.time = time;
-    }
-    public StringProperty getName(){
-        StringProperty propertyName = new SimpleStringProperty(name);
-        return propertyName;
+    public void setTime(double time) {this.time = new SimpleDoubleProperty(time);}
+    public String getName(){
+        return name.get();
     }
     public StringProperty getSongs(){
         songs = songsInPlaylist.size() + "";
         StringProperty propertySongs = new SimpleStringProperty(songs);
         return propertySongs;
     }
-    public DoubleProperty getTime(){
-        DoubleProperty propertyTime = new SimpleDoubleProperty(time);
-        return propertyTime;
-    }
+    public double getTime() {return time.get();}
     public ArrayList<Song> getSongsInPlaylist() {
         return songsInPlaylist;
     }
@@ -67,5 +62,13 @@ public class Playlist implements Serializable {
     }
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Playlist{" +
+                ", id=" + id +
+                ", time=" + time +
+                ", name=" + name +   '}';
     }
 }
