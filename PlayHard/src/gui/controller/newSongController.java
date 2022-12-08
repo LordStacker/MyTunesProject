@@ -16,7 +16,7 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
-
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class newSongController implements Initializable {
     @FXML
@@ -43,17 +43,35 @@ public class newSongController implements Initializable {
         stage.close();
     }
 
+    public void addMoreCatogories(){
+        System.out.println("closing");
+        Stage stage = (Stage) scenePane.getScene().getWindow();
+        stage.close();
+    }
 
-    public void saveButton(javafx.event.ActionEvent actionEvent) {
+
+    public void saveButton(ActionEvent actionEvent) {
         System.out.println("saving");
         Stage stage = (Stage) scenePane.getScene().getWindow();
         categoryChoice.setOnAction(this::getCategory);
         System.out.println(titleField.getText() + " " + artistField.getText() + " " + timeField.getText() +" "+ fileField.getText()+ " ");
 
+        //create extension filter
+
+        ExtensionFilter ex1 = new ExtensionFilter("Mp3 Files","*.mp3");
+        ExtensionFilter ex2 = new ExtensionFilter("All Files","*.*");
+
         //File chooser
         Stage stageDir = new Stage();
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(ex1, ex2);
         File selectedFinalDir = fileChooser.showSaveDialog(stageDir);
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+        System.out.println("Open File");
+        System.out.println(selectedFile.getPath());
+        }
         //File chooser
 
 
@@ -63,11 +81,22 @@ public class newSongController implements Initializable {
 
 
     public void chooseButtonAction(ActionEvent actionEvent) {
+
+        ExtensionFilter ex1 = new ExtensionFilter("Mp3 Files","*.mp3");
+        ExtensionFilter ex2 = new ExtensionFilter("All Files","*.*");
+
         //File chooser
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(ex1, ex2);
         selectedSong = fileChooser.showOpenDialog(stage);
         //File chooser
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            System.out.println("Open File");
+            System.out.println(selectedFile.getPath());
+        }
 
         System.out.println(selectedSong);
         filePath = selectedSong.toString();
