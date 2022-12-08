@@ -1,61 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bb81d88-23bd-41c8-ba8f-4b8fbfe385e8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/PlayHard.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/data/info.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/src/bll/exception/MyTunesSysException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/src/dal/PlaylistDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/src/gui/view/editPlaylist.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayHard/src/gui/view/newPlaylist.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunesProject/bll/exception/MyTunesSysException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunesProject/dal/PlaylistDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunesProject/gui/view/newPlaylist.fxml" beforeDir="false" />
+    <list default="true" id="d587d010-5124-4e2d-a3cb-cac951183c74" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayHard/src/gui/view/MyTunes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/PlayHard/src/gui/view/MyTunes.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunesProject/gui/view/MyTunes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunesProject/gui/view/MyTunes.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeStyleSettingsInfer">
-    <option name="done" value="true" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="2" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2IdYZ8yulxfHt3V9rW7QBdfRWgK" />
+  <component name="ProjectId" id="2IdXE5zh7DL0Q8sksYyEU80EQFi" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Freddy/Documents/GitHub/MyTunesProject"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1bb81d88-23bd-41c8-ba8f-4b8fbfe385e8" name="Changes" comment="" />
-      <created>1670512982684</created>
+      <changelist id="d587d010-5124-4e2d-a3cb-cac951183c74" name="Changes" comment="" />
+      <created>1670512320305</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1670512982684</updated>
+      <updated>1670512320305</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
