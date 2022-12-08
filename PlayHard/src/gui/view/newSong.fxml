@@ -72,23 +72,23 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="150.0" translateX="125.0" translateY="-150.0">
                <children>
-                  <TextField />
-                  <TextField>
+                  <TextField fx:id="titleField" />
+                  <TextField fx:id="artistField">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <ChoiceBox prefWidth="75.0" />
+                  <ChoiceBox fx:id="categoryChoice" prefWidth="75.0" />
                   <Button mnemonicParsing="false" text="More..." translateX="100.0" translateY="-26.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField translateY="25.0" />
+                        <TextField fx:id="fileField" prefHeight="31.0" prefWidth="149.0" translateY="25.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField prefWidth="75.0" translateY="-40.0" />
-                        <Button mnemonicParsing="false" text="Choose..." translateX="80.0" translateY="-5.0" />
+                        <TextField fx:id="timeField" prefWidth="75.0" translateY="-40.0" />
+                        <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#chooseButtonAction" text="Choose..." translateX="80.0" translateY="-5.0" />
                      </children>
                   </HBox>
                </children>
@@ -101,14 +101,14 @@
       </Pane>
    </left>
    <right>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox maxHeight="30.0" prefHeight="20.0" prefWidth="154.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButton" text="Save" translateX="115.0" translateY="75.0">
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButton" text="Save" translateX="115.0" translateY="40.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Button>
-            <Button fx:id="cancelButtone" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" translateX="27.0" translateY="75.0">
+            <Button fx:id="cancelButtone" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" translateX="27.0" translateY="40.0">
                <font>
                   <Font size="10.0" />
                </font>
