@@ -38,13 +38,10 @@ public class SongsDAO {
                 songs.add(songListed);
             }
         }
-
-       System.out.println(songs.toString());
         return songs;
     }
     public ObservableList<Song> getAllSongs(ObservableList<Song> songs){
         this.songs = songs;
-
         return songs;
     }
 
@@ -74,8 +71,6 @@ public class SongsDAO {
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
                 titleSongs.add(titles[1]);
-                System.out.println("aquii"+titleSongs.get(i));
-
             }
         }
         return titleSongs;

@@ -1,8 +1,11 @@
 package gui.controller;
 
+import be.Playlist;
 import be.Song;
 import bll.util.Filter;
+import dal.PlaylistDAO;
 import dal.SongsDAO;
+import dal.db.PlaylistDBDao;
 import gui.MyTunes;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +25,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -35,9 +39,17 @@ public class MyTunesController implements Initializable {
     public TableColumn<Song, Integer> timeColumn;
     public TextField searchBar;
 
+    public TableView<Playlist> playlistTable;
+    public TableColumn<Playlist, String> nameColumn;
+    public TableColumn<Playlist, String> songColumn;
+    public TableColumn<Playlist, Integer> timePlayListColumn;
+
+
     private ArrayList<Stage> listOfStages = new ArrayList<>();
 
     private SongsDAO SongsDAO = new SongsDAO();
+    
+    private PlaylistDAO playlistDAO = new PlaylistDAO();
 
     private Filter filter = new Filter();
 
@@ -58,6 +70,10 @@ public class MyTunesController implements Initializable {
     private Button playBtn;
     private ObservableList<Song> songs = FXCollections.observableArrayList();
 
+    private ObservableList<Playlist> playlists = FXCollections.observableArrayList();
+
+    private PlaylistDBDao playlistDBDao = new PlaylistDBDao();
+
 
 
 
@@ -70,6 +86,17 @@ public class MyTunesController implements Initializable {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
         songsTable.setItems(songs);
+        try {
+            playlists.addAll(playlistDAO.getPlaylist());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(songs);
+        System.out.println(playlists);
+        playlistTable.setItems(playlists);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+       /*songColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));*/
+       timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
 
 
 
