@@ -1,0 +1,215 @@
+package gui.controller;
+
+import be.Song;
+import bll.util.Filter;
+import dal.SongsDAO;
+import gui.MyTunes;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+
+public class MyTunesController implements Initializable {
+    //table columns
+    public TableView<Song> songsTable;
+    public TableColumn<Song, String> titleColumn;
+    public TableColumn<Song, String> artistColumn;
+    public TableColumn<Song, String> categoryColumn;
+    public TableColumn<Song, Integer> timeColumn;
+    public TextField searchBar;
+
+    private ArrayList<Stage> listOfStages = new ArrayList<>();
+
+    private SongsDAO SongsDAO = new SongsDAO();
+
+    private Filter filter = new Filter();
+
+    public Slider volumeSlider;
+
+    private javafx.scene.media.Media media;
+
+    private  boolean running;
+
+    private int songId;
+
+    @FXML
+    public Label songLabel;
+
+    public MediaPlayer mediaPlayer;
+
+    @FXML
+    private Button playBtn;
+    private ObservableList<Song> songs = FXCollections.observableArrayList();
+
+
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        songs.addAll(SongsDAO.getAllSongs(SongsDAO.setAllSongs()));
+        //table view
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        artistColumn.setCellValueFactory(new PropertyValueFactory<>("Artist"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        songsTable.setItems(songs);
+
+
+
+        //Playing Music
+        media = new Media(SongsDAO.setMedia(songId));
+        mediaPlayer = new MediaPlayer(media);
+        songLabel.setText(SongsDAO.getNameSong(songId));
+
+        if(mediaPlayer != null){
+            volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+                @Override
+                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+                }
+            });
+        }
+        //search bar logic
+        searchBar.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                songs.clear();
+                songs.addAll(filter.searchSong(newValue));
+
+            }
+        });
+
+
+    }
+
+    public void addSong() throws IOException {
+        System.out.println("addSongClick");
+        openAddSong();
+    }
+    public void editSong() throws IOException {
+        System.out.println("editSongClick");
+        openEditSong();
+    }
+    public void addPlaylist() throws IOException {
+        openAddPlaylist();
+    }
+
+    public void editPlaylist() throws IOException {
+        openEditPlaylist();
+    }
+    public void openAddSong() throws IOException{
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newSong.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stageAddSong = new Stage();
+        listOfStages.add(stageAddSong);
+        stageAddSong.setTitle("Add a song");
+
+
+
+        stageAddSong.setScene(scene);
+        stageAddSong.show();
+        stageAddSong.setResizable(false);
+    }
+    public void openEditSong() throws IOException {
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editSong.fxml"));
+        Scene scene = new Scene(loader.load());
+        MyTunesController gameCon = loader.getController();
+
+        Stage stage = new Stage();
+        stage.setTitle("Edit a song");
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+    }
+    public void openAddPlaylist() throws IOException {
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newPlaylist.fxml"));
+        Scene scene = new Scene(loader.load());
+
+        Stage stage = new Stage();
+        stage.setTitle("Add a playlist");
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+    }
+
+    public void openEditPlaylist() throws IOException {
+        FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editPlaylist.fxml"));
+        Scene scene = new Scene(loader.load());
+
+        Stage stage = new Stage();
+        stage.setTitle("Edit a song");
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+    }
+    public void playMedia(ActionEvent actionEvent) {
+
+        if(running == false){
+            mediaPlayer.play();
+            playBtn.setText("⏸");
+            running=true;
+        }
+        else {
+            mediaPlayer.pause();
+            playBtn.setText("▶");
+            running=false;
+        }
+    }
+
+    public void nextMedia(ActionEvent actionEvent) {
+        if (songId < SongsDAO.getSongList().size() - 1){
+            songId++;
+            mediaPlayer.stop();
+            media = new Media(SongsDAO.setMedia(songId));
+            mediaPlayer = new MediaPlayer(media);
+            songLabel.setText(SongsDAO.getNameSong(songId));
+            mediaPlayer.play();
+        }else {
+            songId = 0;
+            mediaPlayer.stop();
+            media = new Media(SongsDAO.setMedia(songId));
+            mediaPlayer = new MediaPlayer(media);
+            songLabel.setText(SongsDAO.getNameSong(songId));
+            mediaPlayer.play();
+        }
+    }
+    public void previousMedia(ActionEvent actionEvent) {
+        if (songId > 0){
+            songId--;
+            mediaPlayer.stop();
+            media = new Media(SongsDAO.setMedia(songId));
+            mediaPlayer = new MediaPlayer(media);
+            songLabel.setText(SongsDAO.getNameSong(songId));
+            mediaPlayer.play();
+        }else {
+            songId = SongsDAO.getSongList().size() - 1;
+            mediaPlayer.stop();
+            media = new Media(SongsDAO.setMedia(songId));
+            mediaPlayer = new MediaPlayer(media);
+            songLabel.setText(SongsDAO.getNameSong(songId));
+            mediaPlayer.play();
+        }
+    }
+    public void exitApp() {
+        System.exit(1);
+    }
+
+
+}
