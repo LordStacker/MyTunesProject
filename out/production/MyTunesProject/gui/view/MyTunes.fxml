@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
    <top>
       <VBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
@@ -125,7 +125,15 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin></Text>
+                        <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="246.0">
+                           <HBox.margin>
+                              <Insets left="10.0" top="26.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
                   <TableView fx:id="songsTable" prefHeight="409.0" prefWidth="325.0">

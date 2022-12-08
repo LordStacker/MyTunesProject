@@ -1,10 +1,14 @@
 package gui.controller;
 
 import be.Song;
+import bll.util.Filter;
 import dal.SongsDAO;
 import gui.MyTunes;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +33,13 @@ public class MyTunesController implements Initializable {
     public TableColumn<Song, String> artistColumn;
     public TableColumn<Song, String> categoryColumn;
     public TableColumn<Song, Integer> timeColumn;
+    public TextField searchBar;
 
     private ArrayList<Stage> listOfStages = new ArrayList<>();
 
     private SongsDAO SongsDAO = new SongsDAO();
+
+    private Filter filter = new Filter();
 
     public Slider volumeSlider;
 
@@ -49,18 +56,21 @@ public class MyTunesController implements Initializable {
 
     @FXML
     private Button playBtn;
+    private ObservableList<Song> songs = FXCollections.observableArrayList();
+
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        songs.addAll(SongsDAO.getAllSongs(SongsDAO.setAllSongs()));
         //table view
-
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("Artist"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
-        songsTable.setItems(SongsDAO.getAllSongs());
+        songsTable.setItems(songs);
+
 
 
         //Playing Music
@@ -76,6 +86,15 @@ public class MyTunesController implements Initializable {
                 }
             });
         }
+        //search bar logic
+        searchBar.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                songs.clear();
+                songs.addAll(filter.searchSong(newValue));
+
+            }
+        });
 
 
     }
