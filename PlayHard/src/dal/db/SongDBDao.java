@@ -3,6 +3,7 @@ package dal.db;
 import be.Song;
 import dal.SongsDAO;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,12 +39,23 @@ public class SongDBDao {
                 double Time = resultSet.getDouble("Time");
                 System.out.println(SongId + " " + Tittle + " " + " " + Source + " " + Artist + " " + Category + " " + Time + " ");
 
-
             }
 
         }
     }
     return allSongs;
+    }
+
+    public void postSongs(int id, String title, String artist, String category, double time) throws SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()) {
+            String sql = "INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+"TEST','"+ artist+"','"+ category +"',"+ time +");";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)){
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Inserted correctly");
+                }
+        }
+
     }
 
     public static void main(String[] args) throws SQLException {

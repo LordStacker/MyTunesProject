@@ -6,6 +6,7 @@ import bll.util.Filter;
 import dal.PlaylistDAO;
 import dal.SongsDAO;
 import dal.db.PlaylistDBDao;
+import dal.db.SongDBDao;
 import gui.MyTunes;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -41,7 +42,6 @@ public class MyTunesController implements Initializable {
 
     public TableView<Playlist> playlistTable;
     public TableColumn<Playlist, String> nameColumn;
-    public TableColumn<Playlist, String> songColumn;
     public TableColumn<Playlist, Integer> timePlayListColumn;
 
 
@@ -77,6 +77,7 @@ public class MyTunesController implements Initializable {
 
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songs.addAll(SongsDAO.getAllSongs(SongsDAO.setAllSongs()));
@@ -91,12 +92,14 @@ public class MyTunesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(songs);
-        System.out.println(playlists);
+        try {
+            SongsDAO.addSongDB(songs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         playlistTable.setItems(playlists);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-       /*songColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));*/
-       timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
 
 
 

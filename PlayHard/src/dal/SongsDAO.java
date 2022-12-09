@@ -2,10 +2,12 @@ package dal;
 
 
 import be.Song;
+import dal.db.SongDBDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SongsDAO {
@@ -18,6 +20,8 @@ public class SongsDAO {
     private ArrayList<String> titleSongs = new ArrayList<>();
 
     private static final String SONGS_SOURCE = "PlayHard/data/songs";
+
+    private SongDBDao songDBDao = new SongDBDao();
 
 
     public ObservableList<Song> setAllSongs(){
@@ -39,6 +43,13 @@ public class SongsDAO {
             }
         }
         return songs;
+    }
+
+    public void addSongDB(ObservableList<Song> song) throws SQLException {
+        for(int i=0; i< song.size(); i++){
+            songDBDao.postSongs(song.get(i).getId(), song.get(i).getTitle(), song.get(i).getArtist(),song.get(i).getCategory(), song.get(i).getTime());
+            System.out.println(song);
+        }
     }
     public ObservableList<Song> getAllSongs(ObservableList<Song> songs){
         this.songs = songs;
