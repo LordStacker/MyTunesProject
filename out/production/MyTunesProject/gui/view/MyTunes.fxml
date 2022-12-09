@@ -61,9 +61,8 @@
                   </HBox>
                   <TableView fx:id="playlistTable" prefHeight="422.0" prefWidth="256.0">
                     <columns>
-                      <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                      <TableColumn fx:id="songColumn" prefWidth="75.0" text="Song" />
-                        <TableColumn fx:id="timePlayListColumn" prefWidth="94.4000030517578" text="Time" />
+                      <TableColumn fx:id="nameColumn" prefWidth="122.39998948574066" text="Name" />
+                        <TableColumn fx:id="timePlayListColumn" prefWidth="122.4000015258789" text="Time" />
                     </columns>
                      <VBox.margin>
                         <Insets left="10.0" />
