@@ -34,11 +34,13 @@ public class SongsDAO {
                 songList.add(f);
             }
             for(int i=0 ; i<songList.size();i++){
+
+                //TODO Refactor logic
                 String title;
                 String[] titles = new String[0];
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
-                Song songListed = new Song(titles[1],titles[1], 11, "atanas");
+                Song songListed = new Song(titles[1],titles[1], 11, "atanas",titles[1]);
                 songs.add(songListed);
             }
         }
@@ -47,9 +49,13 @@ public class SongsDAO {
 
     public void addSongDB(ObservableList<Song> song) throws SQLException {
         for(int i=0; i< song.size(); i++){
-            songDBDao.postSongs(song.get(i).getId(), song.get(i).getTitle(), song.get(i).getArtist(),song.get(i).getCategory(), song.get(i).getTime());
+            songDBDao.postSongs(song.get(i).getId(), song.get(i).getTitle(), song.get(i).getArtist(),song.get(i).getCategory(), song.get(i).getTime(), song.get(i).getSource());
             System.out.println(song);
         }
+    }
+
+    public void clearSongs() throws  SQLException{
+        SongDBDao.clearSongsDB();
     }
     public ObservableList<Song> getAllSongs(ObservableList<Song> songs){
         this.songs = songs;
