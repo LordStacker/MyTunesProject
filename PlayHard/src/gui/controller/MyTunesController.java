@@ -92,11 +92,12 @@ public class MyTunesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-       /* try {
+        try {
+            SongsDAO.clearSongs();
             SongsDAO.addSongDB(songs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }*/
+        }
         playlistTable.setItems(playlists);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));

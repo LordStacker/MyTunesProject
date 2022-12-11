@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SongDBDao {
 
-    private DataBaseConnection dataBaseConnection;
+    private static DataBaseConnection dataBaseConnection;
 
     public SongDBDao(){
         dataBaseConnection = new DataBaseConnection();
@@ -46,9 +46,9 @@ public class SongDBDao {
     return allSongs;
     }
 
-    public void postSongs(int id, String title, String artist, String category, double time) throws SQLException{
+    public void postSongs(int id, String title, String artist, String category, double time, String source) throws SQLException{
         try(Connection connection = dataBaseConnection.getConnection()) {
-            String sql = "INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+"TEST','"+ artist+"','"+ category +"',"+ time +");";
+            String sql = "INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+source+"','"+ artist+"','"+ category +"',"+ time +");";
             Statement statement = connection.createStatement();
             if(statement.execute(sql)){
                 ResultSet resultSet = statement.getResultSet();
@@ -56,6 +56,17 @@ public class SongDBDao {
                 }
         }
 
+    }
+
+    public static void clearSongsDB() throws  SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()){
+            String sql = "Delete from songs;";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)){
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Deleted");
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException {

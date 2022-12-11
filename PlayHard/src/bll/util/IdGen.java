@@ -11,6 +11,7 @@ public class IdGen {
 
     public static int createSongId() {
         songId++;
+        System.out.println(songId);
         return songId;
     }
 
