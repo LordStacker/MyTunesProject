@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -243,4 +243,14 @@ public class MyTunesController implements Initializable {
     }
 
 
+    public void playSelectedSong(MouseEvent mouseEvent) {
+        mediaPlayer.stop();
+        Song selectedSong = songsTable.getSelectionModel().getSelectedItem();
+       // Song songToPlay = new Song(Paths.get(selectedSong.getPath().toUri()).toUri().toString());
+        if (selectedSong != null){
+            media = new Media(selectedSong.getSource());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        }
+    }
 }
