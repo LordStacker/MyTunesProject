@@ -1,7 +1,9 @@
 package dal.db;
 
 import be.Song;
+import dal.SongsDAO;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +13,9 @@ import java.util.List;
 
 public class SongDBDao {
 
-    private DataBaseConnection dataBaseConnection;
+    private static DataBaseConnection dataBaseConnection;
 
-    private SongDBDao(){
+    public SongDBDao(){
         dataBaseConnection = new DataBaseConnection();
 
     }
@@ -22,20 +24,49 @@ public class SongDBDao {
     public List<Song> getAllSongs() throws SQLException{
         ArrayList<Song> allSongs = new ArrayList<>();
     try(Connection connection = dataBaseConnection.getConnection()) {
-        String sql = "SELECT * FROM Song;";
+        String sql = "SELECT * FROM Songs;";
 
         Statement statement = connection.createStatement();
 
         if(statement.execute(sql)){
             ResultSet resultSet = statement.getResultSet();
             while(resultSet.next()){
-                String  test = resultSet.getString("Song");
-                System.out.println(test);
+                int  SongId = resultSet.getInt("SongID");
+                String  Tittle = resultSet.getString("Title");
+                String Source = resultSet.getString("Source");
+                String Artist = resultSet.getString("Artist");
+                String Category = resultSet.getString("Category");
+                double Time = resultSet.getDouble("Time");
+                System.out.println(SongId + " " + Tittle + " " + " " + Source + " " + Artist + " " + Category + " " + Time + " ");
+
             }
 
         }
     }
     return allSongs;
+    }
+
+    public void postSongs(int id, String title, String artist, String category, double time, String source) throws SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()) {
+            String sql = "INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+source+"','"+ artist+"','"+ category +"',"+ time +");";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)){
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Inserted correctly");
+                }
+        }
+
+    }
+
+    public static void clearSongsDB() throws  SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()){
+            String sql = "Delete from songs;";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)){
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Deleted");
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException {

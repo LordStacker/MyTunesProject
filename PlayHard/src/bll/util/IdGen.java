@@ -11,12 +11,14 @@ public class IdGen {
 
     public static int createSongId() {
         songId++;
+        System.out.println(songId);
         return songId;
     }
 
+    public static int createPlayListId() {
+        playListId++;
+        System.out.println(playListId);
+        return playListId;
+    }
 
-    /*
-    TODO
-    public static int createPlaylistId()
-    */
 }

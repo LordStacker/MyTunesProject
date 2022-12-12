@@ -2,10 +2,12 @@ package dal;
 
 
 import be.Song;
+import dal.db.SongDBDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SongsDAO {
@@ -19,6 +21,8 @@ public class SongsDAO {
 
     private static final String SONGS_SOURCE = "PlayHard/data/songs";
 
+    private SongDBDao songDBDao = new SongDBDao();
+
 
     public ObservableList<Song> setAllSongs(){
         File folder = new File(SONGS_SOURCE);
@@ -30,21 +34,31 @@ public class SongsDAO {
                 songList.add(f);
             }
             for(int i=0 ; i<songList.size();i++){
+
+                //TODO Refactor logic
                 String title;
                 String[] titles = new String[0];
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
-                Song songListed = new Song(titles[1],titles[1], 11, "atanas");
+                Song songListed = new Song(titles[1],titles[1], 11, "atanas",titles[1]);
                 songs.add(songListed);
             }
         }
-
-       System.out.println(songs.toString());
         return songs;
+    }
+
+    public void addSongDB(ObservableList<Song> song) throws SQLException {
+        for(int i=0; i< song.size(); i++){
+            songDBDao.postSongs(song.get(i).getId(), song.get(i).getTitle(), song.get(i).getArtist(),song.get(i).getCategory(), song.get(i).getTime(), song.get(i).getSource());
+            System.out.println(song);
+        }
+    }
+
+    public void clearSongs() throws  SQLException{
+        SongDBDao.clearSongsDB();
     }
     public ObservableList<Song> getAllSongs(ObservableList<Song> songs){
         this.songs = songs;
-
         return songs;
     }
 
@@ -74,8 +88,6 @@ public class SongsDAO {
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
                 titleSongs.add(titles[1]);
-                System.out.println("aquii"+titleSongs.get(i));
-
             }
         }
         return titleSongs;

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mytunes3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../xample/MyTunes/src/mytunes/jfoenix.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../xample/MyTunes/src/mytunes/jaudiotagger-2.2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

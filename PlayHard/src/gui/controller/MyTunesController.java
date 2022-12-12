@@ -1,8 +1,12 @@
 package gui.controller;
 
+import be.Playlist;
 import be.Song;
 import bll.util.Filter;
+import dal.PlaylistDAO;
 import dal.SongsDAO;
+import dal.db.PlaylistDBDao;
+import dal.db.SongDBDao;
 import gui.MyTunes;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +26,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -35,9 +40,16 @@ public class MyTunesController implements Initializable {
     public TableColumn<Song, Integer> timeColumn;
     public TextField searchBar;
 
+    public TableView<Playlist> playlistTable;
+    public TableColumn<Playlist, String> nameColumn;
+    public TableColumn<Playlist, Integer> timePlayListColumn;
+
+
     private ArrayList<Stage> listOfStages = new ArrayList<>();
 
     private SongsDAO SongsDAO = new SongsDAO();
+    
+    private PlaylistDAO playlistDAO = new PlaylistDAO();
 
     private Filter filter = new Filter();
 
@@ -58,6 +70,11 @@ public class MyTunesController implements Initializable {
     private Button playBtn;
     private ObservableList<Song> songs = FXCollections.observableArrayList();
 
+    private ObservableList<Playlist> playlists = FXCollections.observableArrayList();
+
+    private PlaylistDBDao playlistDBDao = new PlaylistDBDao();
+
+
 
 
 
@@ -70,6 +87,20 @@ public class MyTunesController implements Initializable {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
         songsTable.setItems(songs);
+        try {
+            playlists.addAll(playlistDAO.getPlaylist());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            SongsDAO.clearSongs();
+            SongsDAO.addSongDB(songs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        playlistTable.setItems(playlists);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
 
 
 
@@ -130,7 +161,6 @@ public class MyTunesController implements Initializable {
     public void openEditSong() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editSong.fxml"));
         Scene scene = new Scene(loader.load());
-        MyTunesController gameCon = loader.getController();
 
         Stage stage = new Stage();
         stage.setTitle("Edit a song");
@@ -141,12 +171,13 @@ public class MyTunesController implements Initializable {
     public void openAddPlaylist() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
+        Stage stageAddPlayList = new Stage();
 
-        Stage stage = new Stage();
-        stage.setTitle("Add a playlist");
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        listOfStages.add(stageAddPlayList);
+        stageAddPlayList.setTitle("Add a playlist");
+        stageAddPlayList.setScene(scene);
+        stageAddPlayList.show();
+        stageAddPlayList.setResizable(false);
     }
 
     public void openEditPlaylist() throws IOException {
