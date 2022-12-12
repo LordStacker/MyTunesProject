@@ -145,7 +145,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <TableView fx:id="songsTable" prefHeight="409.0" prefWidth="325.0">
+                  <TableView fx:id="songsTable" onMouseClicked="#playSelectedSong" prefHeight="409.0" prefWidth="325.0">
                     <columns>
                       <TableColumn fx:id="titleColumn" prefWidth="76.800048828125" text="Title" />
                       <TableColumn fx:id="artistColumn" prefWidth="72.79998779296875" text="Artist" />

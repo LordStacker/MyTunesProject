@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -92,11 +92,12 @@ public class MyTunesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-       /* try {
+        try {
+            SongsDAO.clearSongs();
             SongsDAO.addSongDB(songs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }*/
+        }
         playlistTable.setItems(playlists);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -160,7 +161,6 @@ public class MyTunesController implements Initializable {
     public void openEditSong() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editSong.fxml"));
         Scene scene = new Scene(loader.load());
-        MyTunesController gameCon = loader.getController();
 
         Stage stage = new Stage();
         stage.setTitle("Edit a song");
@@ -171,12 +171,13 @@ public class MyTunesController implements Initializable {
     public void openAddPlaylist() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
+        Stage stageAddPlayList = new Stage();
 
-        Stage stage = new Stage();
-        stage.setTitle("Add a playlist");
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        listOfStages.add(stageAddPlayList);
+        stageAddPlayList.setTitle("Add a playlist");
+        stageAddPlayList.setScene(scene);
+        stageAddPlayList.show();
+        stageAddPlayList.setResizable(false);
     }
 
     public void openEditPlaylist() throws IOException {
@@ -242,4 +243,14 @@ public class MyTunesController implements Initializable {
     }
 
 
+    public void playSelectedSong(MouseEvent mouseEvent) {
+        mediaPlayer.stop();
+        Song selectedSong = songsTable.getSelectionModel().getSelectedItem();
+       // Song songToPlay = new Song(Paths.get(selectedSong.getPath().toUri()).toUri().toString());
+        if (selectedSong != null){
+            media = new Media(selectedSong.getSource());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        }
+    }
 }

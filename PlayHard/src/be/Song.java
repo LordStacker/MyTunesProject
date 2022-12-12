@@ -5,8 +5,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.io.File;
-
 public class Song {
     private SimpleStringProperty title;
     private SimpleStringProperty artist;
@@ -16,18 +14,18 @@ public class Song {
     private String fileName;
 
 
-    private File source;
+    private SimpleStringProperty source;
 
 
 
 
-    public Song(String artist, String title, double time, String category){
+    public Song(String artist, String title, double time, String category, String source){
         this.title = new SimpleStringProperty(title);
         this.artist = new SimpleStringProperty(artist);
         this.category = new SimpleStringProperty(category);
         this.time = new SimpleDoubleProperty(time);
         this.id = IdGen.createSongId();
-
+        this.source = new SimpleStringProperty(source);
     }
 
 
@@ -36,13 +34,12 @@ public class Song {
         return id;
     }
 
-    public File getSource(){
-        return this.source;
+    public String getSource(){
+        return source.get();
     }
 
-    public File setSource(File source){
-        this.source = source;
-        return this.source;
+    public void setSource(String source){
+        this.source =new SimpleStringProperty(source);
     }
     public void setFilePath(String path){
         this.fileName = path;
