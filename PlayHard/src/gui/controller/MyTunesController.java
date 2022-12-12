@@ -24,6 +24,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -106,6 +108,7 @@ public class MyTunesController implements Initializable {
 
         //Playing Music
         media = new Media(SongsDAO.setMedia(songId));
+        System.out.println(SongsDAO.setMedia(songId));
         mediaPlayer = new MediaPlayer(media);
         songLabel.setText(SongsDAO.getNameSong(songId));
 
@@ -248,7 +251,9 @@ public class MyTunesController implements Initializable {
         Song selectedSong = songsTable.getSelectionModel().getSelectedItem();
        // Song songToPlay = new Song(Paths.get(selectedSong.getPath().toUri()).toUri().toString());
         if (selectedSong != null){
-            media = new Media(selectedSong.getSource());
+            String newSelection = selectedSong.getSource().replaceAll("\\\\", "/").strip();
+            System.out.println(newSelection);
+            media = new Media("file:/C:/Users/nicoe/OneDrive/Escritorio/Mytunes/"+newSelection);
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
         }
