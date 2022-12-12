@@ -79,7 +79,7 @@
                      </VBox.margin>
                   </TextField>
                   <ChoiceBox fx:id="categoryChoice" prefWidth="75.0" />
-                  <Button mnemonicParsing="false" text="More..." translateX="100.0" translateY="-26.0" />
+                  <Button fx:id="moreCategories" mnemonicParsing="false" onAction="#addMoreCatogories" text="More..." translateX="100.0" translateY="-26.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="fileField" prefHeight="31.0" prefWidth="149.0" translateY="25.0" />
