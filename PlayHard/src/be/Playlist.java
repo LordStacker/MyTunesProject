@@ -18,20 +18,12 @@ public class Playlist implements Serializable {
     private final ArrayList<Song> songsInPlaylist;
 
 
-    public Playlist(String name/*, String songs */, double time, int id){
+    public Playlist(String name, double time){
         this.name = new SimpleStringProperty(name);
        /* this.songs = songs;*/
         this.time = new SimpleDoubleProperty(time);
-        this.id = id;
+        this.id = IdGen.createPlayListId();
         songsInPlaylist = new ArrayList<>();
-        /*
-        try{
-            id = IdGen.createSongId();
-        }catch (FileNotFoundException exception){
-            System.out.println("File not found!");
-        }
-
-         */
     }
 
     public void setName(String name){

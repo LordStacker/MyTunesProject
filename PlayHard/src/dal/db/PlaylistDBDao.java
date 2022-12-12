@@ -37,7 +37,7 @@ public class PlaylistDBDao {
                     String name = resultSet.getString("name");
                     double Time = resultSet.getDouble("Time");
                     System.out.println(playlistid + " " + name + " " + Time);
-                    Playlist newPlaylists = new Playlist(name,Time, playlistid);
+                    Playlist newPlaylists = new Playlist(name,Time);
                     allPlayList.addAll(newPlaylists);
 
 
@@ -46,6 +46,16 @@ public class PlaylistDBDao {
         }
 
         return allPlayList;
+    }
+    public static void postNewPlaylists(int id,String playlist, double time) throws SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()) {
+            String sql = "INSERT INTO playlist(playlistid,name,[time]) VALUES ("+ id +",'"+ playlist+"',"+time+");";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)){
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Inserted correctly");
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException {

@@ -161,7 +161,6 @@ public class MyTunesController implements Initializable {
     public void openEditSong() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editSong.fxml"));
         Scene scene = new Scene(loader.load());
-        MyTunesController gameCon = loader.getController();
 
         Stage stage = new Stage();
         stage.setTitle("Edit a song");
@@ -172,12 +171,13 @@ public class MyTunesController implements Initializable {
     public void openAddPlaylist() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/newPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
+        Stage stageAddPlayList = new Stage();
 
-        Stage stage = new Stage();
-        stage.setTitle("Add a playlist");
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        listOfStages.add(stageAddPlayList);
+        stageAddPlayList.setTitle("Add a playlist");
+        stageAddPlayList.setScene(scene);
+        stageAddPlayList.show();
+        stageAddPlayList.setResizable(false);
     }
 
     public void openEditPlaylist() throws IOException {
