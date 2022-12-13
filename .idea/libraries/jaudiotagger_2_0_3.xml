@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="jaudiotagger-2.0.3">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../../../Program Files/Java/freddyJar/jaudiotagger-2.0.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../../../../Program Files/Java/freddyJar/jave-1.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../freddyJar/jaudiotagger-2.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../freddyJar/jave-1.0.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

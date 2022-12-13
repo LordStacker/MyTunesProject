@@ -21,6 +21,8 @@ public class PlaylistDBDao {
 
     private static ObservableList<Playlist> allPlayList = FXCollections.observableArrayList();
 
+    private static ObservableList<Song> songForPlayList = FXCollections.observableArrayList();
+
     public PlaylistDBDao(){
         dataBaseConnection = new DataBaseConnection();
 
@@ -36,7 +38,6 @@ public class PlaylistDBDao {
                     int playlistid = resultSet.getInt("Playlistid");
                     String name = resultSet.getString("name");
                     double Time = resultSet.getDouble("Time");
-                    System.out.println(playlistid + " " + name + " " + Time);
                     Playlist newPlaylists = new Playlist(name,Time);
                     allPlayList.addAll(newPlaylists);
 
@@ -74,11 +75,34 @@ public class PlaylistDBDao {
         }
     }
 
+    public static ObservableList<Song> getSongsFromPlaylist(String input) throws  SQLException{
+        int i = 0;
+        try(Connection connection = dataBaseConnection.getConnection()){
+            String sql = "SELECT * from playlistinfo where name='"+input+"';";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)){
+                ResultSet resultSet = statement.getResultSet();
+                while (resultSet.next()){
+                    int playlistid = resultSet.getInt("Playlistid");
+                    String name = resultSet.getString("name");
+                    int songsinplaylist = resultSet.getInt("songsinplaylist");
+                    SongDBDao.getSongsForPlaylist(songsinplaylist);
+                    songForPlayList.add(SongDBDao.getSongsForPlaylist(songsinplaylist).get(i));
+                    i++;
+                   /* for(int i = 0; i<SongDBDao.getSongsForPlaylist(songsinplaylist).size(); i++){
+                        songForPlayList.add(SongDBDao.getSongsForPlaylist(songsinplaylist).get(i));
+                    }*/
+                }
+            }
+            return songForPlayList;
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         PlaylistDBDao playlistDBDao = new PlaylistDBDao();
+        getSongsFromPlaylist("PlayListTest");
 
         List<Playlist> allPlaylists = PlaylistDBDao.getAllPlaylists();
-        System.out.println(allPlaylists);
     }
 
 }

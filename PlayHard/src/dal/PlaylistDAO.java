@@ -25,7 +25,6 @@ public class PlaylistDAO {
     public void addPlayListDB(ObservableList<Playlist> playlists) throws SQLException {
         for(int i=0; i< playlists.size(); i++){
             PlaylistDBDao.postNewPlaylists(playlists.get(i).getId(), playlists.get(i).getName(), playlists.get(i).getTime());
-            System.out.println(playlists);
         }
     }
 

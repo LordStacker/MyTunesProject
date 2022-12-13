@@ -30,7 +30,6 @@ public class SongsDAO {
         //Filing the array with the info of the folder
         if(folder != null){
             for (File f: file) {
-                System.out.println(f);
                 songList.add(f);
             }
             for(int i=0 ; i<songList.size();i++){
@@ -50,7 +49,6 @@ public class SongsDAO {
     public void addSongDB(ObservableList<Song> song) throws SQLException {
         for(int i=0; i< song.size(); i++){
             songDBDao.postSongs(song.get(i).getId(), song.get(i).getTitle(), song.get(i).getArtist(),song.get(i).getCategory(), song.get(i).getTime(), song.get(i).getSource());
-            System.out.println(song);
         }
     }
 
