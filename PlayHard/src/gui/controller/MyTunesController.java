@@ -64,9 +64,9 @@ public class MyTunesController implements Initializable {
     private int songId;
 
     @FXML
-    public Label songLabel;
+    private Label songLabel;
 
-    public MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     @FXML
     private Button playBtn;
@@ -100,10 +100,13 @@ public class MyTunesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        playlistTable.setItems(playlists);
+        try {
+            playlistTable.setItems(playlistDAO.getAllPlaylists(playlists));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-
 
 
         //Playing Music
@@ -132,18 +135,16 @@ public class MyTunesController implements Initializable {
 
 
     }
-
     public void addSong() throws IOException {
-        System.out.println("addSongClick");
         openAddSong();
     }
     public void editSong() throws IOException {
-        System.out.println("editSongClick");
         openEditSong();
     }
     public void addPlaylist() throws IOException {
         openAddPlaylist();
     }
+
 
     public void editPlaylist() throws IOException {
         openEditPlaylist();
@@ -244,7 +245,6 @@ public class MyTunesController implements Initializable {
     public void exitApp() {
         System.exit(1);
     }
-
 
     public void playSelectedSong(MouseEvent mouseEvent) {
         mediaPlayer.stop();

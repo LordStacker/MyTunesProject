@@ -58,6 +58,22 @@ public class PlaylistDBDao {
         }
     }
 
+    public static void postNewSongsToPlayList(int id, String playListName, int songId) throws  SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()){
+            String sql = "INSERT INTO playlistinfo (Playlistid, name, songsinplaylist) values ("+ id +"'"+playListName+"'"+ songId+");";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)){
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Inserted");
+            }
+        }
+    }
+    public static void getAllSongsFromPlayList(String name) throws SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()){
+            String sql = "SELECT * FROM playlistinfo where name="+name+";";
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         PlaylistDBDao playlistDBDao = new PlaylistDBDao();
 
