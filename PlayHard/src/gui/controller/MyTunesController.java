@@ -48,6 +48,10 @@ public class MyTunesController implements Initializable {
     public TableColumn<Playlist, String> nameColumn;
     public TableColumn<Playlist, Integer> timePlayListColumn;
     public TableColumn playlistName;
+    public Label setPlaylist;
+    public TableView setSongsInPlaylist;
+    public TableColumn titleColumnPlaylist;
+    public TableColumn timeColumnPlaylist;
 
 
     private ArrayList<Stage> listOfStages = new ArrayList<>();
@@ -277,6 +281,6 @@ public class MyTunesController implements Initializable {
 
     public void getPlaylist(MouseEvent mouseEvent) {
         PlayListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
-        playlistName.setText(PlayListSelection);
+        setPlaylist.setText(PlayListSelection);
     }
 }
