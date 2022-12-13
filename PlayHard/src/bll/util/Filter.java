@@ -13,7 +13,6 @@ private SongsDAO songsDAO = new SongsDAO();
 private final ObservableList songs = songsDAO.setAllSongs();
 
     public List<Song> searchSong(String query){
-        //System.out.println(songsDAO.getSongs());
 
         ObservableList<Song> songs = songsDAO.getAllSongs(this.songs);
         FilteredList<Song> filteredList = new FilteredList<>(songs, b -> true);
@@ -25,7 +24,6 @@ private final ObservableList songs = songsDAO.setAllSongs();
             else
                 return false;
         });
-        System.out.println(filteredList);
         return filteredList;
     }
 

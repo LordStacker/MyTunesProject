@@ -45,13 +45,13 @@ public class MyTunesController implements Initializable {
     public TextField searchBar;
 
     public TableView<Playlist> playlistTable;
+
+    public TableView<Song> setSongsInPlaylist;
+    public TableColumn<Song, String> titleColumnPlaylist;
+    public TableColumn<Song, Integer> timeColumnPlaylist;
     public TableColumn<Playlist, String> nameColumn;
     public TableColumn<Playlist, Integer> timePlayListColumn;
-    public TableColumn playlistName;
     public Label setPlaylist;
-    public TableView setSongsInPlaylist;
-    public TableColumn titleColumnPlaylist;
-    public TableColumn timeColumnPlaylist;
 
 
     private ArrayList<Stage> listOfStages = new ArrayList<>();
@@ -79,6 +79,8 @@ public class MyTunesController implements Initializable {
     private Button playBtn;
     private ObservableList<Song> songs = FXCollections.observableArrayList();
 
+    private ObservableList<Song> songsInPlayList = FXCollections.observableArrayList();
+
     private ObservableList<Playlist> playlists = FXCollections.observableArrayList();
 
     private PlaylistDBDao playlistDBDao = new PlaylistDBDao();
@@ -92,6 +94,7 @@ public class MyTunesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songs.addAll(SongsDAO.getAllSongs(SongsDAO.setAllSongs()));
+        System.out.println("HERE ASSHOLE 2" + songs);
         //table view
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("Artist"));
@@ -109,18 +112,18 @@ public class MyTunesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         try {
             playlistTable.setItems(playlistDAO.getAllPlaylists(playlists));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
 
 
         //Playing Music
         media = new Media(SongsDAO.setMedia(songId));
-        System.out.println(SongsDAO.setMedia(songId));
         mediaPlayer = new MediaPlayer(media);
         songLabel.setText(SongsDAO.getNameSong(songId));
 
@@ -279,8 +282,14 @@ public class MyTunesController implements Initializable {
         }
     }
 
-    public void getPlaylist(MouseEvent mouseEvent) {
+    public void getPlaylist(MouseEvent mouseEvent) throws SQLException {
+        songsInPlayList.clear();
         PlayListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
         setPlaylist.setText(PlayListSelection);
+        songsInPlayList.addAll(PlaylistDBDao.getSongsFromPlaylist(PlayListSelection));
+        System.out.println("HERE ASSHOLE" + songsInPlayList);
+        titleColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        timeColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("time"));
+        setSongsInPlaylist.setItems(songsInPlayList);
     }
 }

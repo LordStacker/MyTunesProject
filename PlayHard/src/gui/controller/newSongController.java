@@ -66,7 +66,6 @@ public class newSongController implements Initializable {
         System.out.println("saving");
         Stage stage = (Stage) scenePane.getScene().getWindow();
         categoryChoice.setOnAction(this::getCategory);
-        System.out.println(titleField.getText() + " " + artistField.getText() + " " + timeField.getText() + " " + fileField.getText() + " ");
 
         //create extension filter
         ExtensionFilter ex1 = new ExtensionFilter("Mp3 Files", "*.mp3");
@@ -100,7 +99,6 @@ public class newSongController implements Initializable {
         //File chooser
 
 
-        System.out.println(selectedSong);
         filePath =selectedSong.toString();
         AudioFile af = null;
         try {
