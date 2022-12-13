@@ -99,17 +99,27 @@
                   </HBox>
                   <HBox prefHeight="414.0" prefWidth="215.0">
                      <children>
-                        <TableView prefHeight="409.0" prefWidth="190.0">
-                          <columns>
-                            <TableColumn fx:id="playlistName" prefWidth="188.7999877691269" text="Choose your playlist" />
-                          </columns>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TableView>
+                        <VBox prefHeight="407.0" prefWidth="210.0">
+                           <children>
+                              <Label fx:id="setPlaylist" prefHeight="33.0" prefWidth="206.0" text="Choose your playlist..." textAlignment="CENTER" textFill="#3eb030">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TableView fx:id="setSongsInPlaylist" prefHeight="394.0" prefWidth="210.0">
+                                <columns>
+                                  <TableColumn fx:id="titleColumnPlaylist" prefWidth="114.40003967285156" text="Title" />
+                                  <TableColumn fx:id="timeColumnPlaylist" prefWidth="95.20001220703125" text="Time" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </TableView>
+                           </children>
+                        </VBox>
                         <Button fx:id="moveSongToPlaylist" mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" stylesheets="@../css/MainViewSheet.css" text="⬅">
                            <HBox.margin>
-                              <Insets left="7.0" />
+                              <Insets left="5.0" top="25.0" />
                            </HBox.margin>
                         </Button>
                      </children>
