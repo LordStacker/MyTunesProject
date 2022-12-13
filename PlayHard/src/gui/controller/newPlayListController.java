@@ -31,8 +31,6 @@ public class newPlayListController {
 
     public void PlayListName(){
         this.playListName = playListNameField.getText();
-        System.out.println(playListNameField);
-        System.out.println(playListName);
     }
 
     public String getPlayListName(){
@@ -43,8 +41,6 @@ public class newPlayListController {
         PlayListName();
         Playlist playlist = new Playlist(playListName, 55.34);
         PlaylistDBDao.postNewPlaylists(playlist.getId(),playlist.getName(), playlist.getTime());
-        System.out.println(getPlayListName());
-        System.out.println("Succeeded");
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }

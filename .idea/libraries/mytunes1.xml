@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="MyTunes1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../xample/MyTunes/dist/MyTunes.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
