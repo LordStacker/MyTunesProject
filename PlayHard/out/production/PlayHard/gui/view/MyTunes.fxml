@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
+   <top>
+      <VBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="PlayHard" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Book Antiqua Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+   <left>
+      <Pane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="-2.0" layoutY="-2.0" prefHeight="601.0" prefWidth="256.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="⏪" />
+                        <Button mnemonicParsing="false" text="▷" />
+                        <Button mnemonicParsing="false" text="⏩" />
+                     </children>
+                  </HBox>
+                  <ListView prefHeight="419.0" prefWidth="256.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="newPlaylist" mnemonicParsing="false" onAction="#addPlaylist" text="New.." />
+                        <Button fx:id="editPlaylist" mnemonicParsing="false" onAction="#editPlaylist" text="Edit..." />
+                        <Button mnemonicParsing="false" text="Delete" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="254.0" prefHeight="601.0" prefWidth="256.0">
+               <children>
+                  <HBox prefHeight="98.0" prefWidth="256.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SONG" />
+                     </children>
+                  </HBox>
+                  <ListView prefHeight="419.0" prefWidth="256.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="⬇" />
+                        <Button mnemonicParsing="false" text="⬆" />
+                        <Button mnemonicParsing="false" text="Delete" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="510.0" layoutY="-2.0" prefHeight="601.0" prefWidth="292.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:" />
+                     </children>
+                  </HBox>
+                  <ListView prefHeight="419.0" prefWidth="256.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="newSong" mnemonicParsing="false" onAction="#addSong" text="New.." />
+                        <Button fx:id="editSongButton" mnemonicParsing="false" onAction="#editSong" text="Edit..." />
+                        <Button mnemonicParsing="false" text="Delete" />
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Close" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>

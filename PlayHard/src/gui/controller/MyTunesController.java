@@ -28,6 +28,8 @@ import javafx.scene.input.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -45,6 +47,7 @@ public class MyTunesController implements Initializable {
     public TableView<Playlist> playlistTable;
     public TableColumn<Playlist, String> nameColumn;
     public TableColumn<Playlist, Integer> timePlayListColumn;
+    public TableColumn playlistName;
 
 
     private ArrayList<Stage> listOfStages = new ArrayList<>();
@@ -76,6 +79,8 @@ public class MyTunesController implements Initializable {
 
     private PlaylistDBDao playlistDBDao = new PlaylistDBDao();
 
+    private String PlayListSelection;
+
 
 
 
@@ -100,10 +105,13 @@ public class MyTunesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        playlistTable.setItems(playlists);
+        try {
+            playlistTable.setItems(playlistDAO.getAllPlaylists(playlists));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-
 
 
         //Playing Music
@@ -132,18 +140,16 @@ public class MyTunesController implements Initializable {
 
 
     }
-
     public void addSong() throws IOException {
-        System.out.println("addSongClick");
         openAddSong();
     }
     public void editSong() throws IOException {
-        System.out.println("editSongClick");
         openEditSong();
     }
     public void addPlaylist() throws IOException {
         openAddPlaylist();
     }
+
 
     public void editPlaylist() throws IOException {
         openEditPlaylist();
@@ -245,17 +251,32 @@ public class MyTunesController implements Initializable {
         System.exit(1);
     }
 
-
+//TODO UPDATE THE FUNCTION TO WORK PROPERLY WITH THE NEXT AND PREVIOUS BTNS
     public void playSelectedSong(MouseEvent mouseEvent) {
         mediaPlayer.stop();
         Song selectedSong = songsTable.getSelectionModel().getSelectedItem();
-       // Song songToPlay = new Song(Paths.get(selectedSong.getPath().toUri()).toUri().toString());
         if (selectedSong != null){
-            String newSelection = selectedSong.getSource().replaceAll("\\\\", "/").strip();
-            System.out.println(newSelection);
-            media = new Media("file:/C:/Users/nicoe/OneDrive/Escritorio/Mytunes/"+newSelection);
+            media = new Media(selectedSong.getSource());
             mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.play();
+
+            if (running == false){
+                mediaPlayer.play();
+                playBtn.setText("⏸");
+                songLabel.setText(selectedSong.getTitle());
+                running=true;
+            }else {
+                mediaPlayer.pause();
+                playBtn.setText("▶");
+                mediaPlayer.pause();
+                songLabel.setText(selectedSong.getTitle());
+                running=false;
+            }
+
         }
+    }
+
+    public void getPlaylist(MouseEvent mouseEvent) {
+        PlayListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
+        playlistName.setText(PlayListSelection);
     }
 }
