@@ -324,6 +324,7 @@ public class MyTunesController implements Initializable {
         //playlistDBDao.deleteSongFromPlayList(playListSelection,songIdOfPlayList );
     }
 
+
     public void playSongsFromPlaylist(MouseEvent mouseEvent) {
         mediaPlayer.stop();
         Song song = setSongsInPlaylist.getSelectionModel().getSelectedItem();
