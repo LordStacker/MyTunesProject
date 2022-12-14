@@ -49,7 +49,7 @@ public class SongDBDao {
 
     public void postSongs(int id, String title, String artist, String category, double time, String source) throws SQLException{
         try(Connection connection = dataBaseConnection.getConnection()) {
-            String sql = "INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+source+"','"+ artist+"','"+ category +"',"+ time +");";
+            String sql = "SET ANSI_WARNINGS OFF INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+source+"','"+ artist+"','"+ category +"',"+ time +") SET ANSI_WARNINGS ON;";
             Statement statement = connection.createStatement();
             if(statement.execute(sql)){
                 ResultSet resultSet = statement.getResultSet();

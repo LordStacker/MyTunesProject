@@ -80,7 +80,9 @@ public class MyTunesController implements Initializable {
 
     private PlaylistDBDao playlistDBDao = new PlaylistDBDao();
 
-    private String PlayListSelection;
+    private String playListSelection;
+
+    private int playListSelectionID;
 
     private String songTitleSelected;
     private String songArtistSelected;
@@ -286,23 +288,30 @@ public class MyTunesController implements Initializable {
     public void getPlaylist(MouseEvent mouseEvent) throws SQLException {
         setSongsInPlaylist.getItems().clear();
         songsInPlayList.clear();
-        PlayListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
-        setPlaylist.setText(PlayListSelection);
-        songsInPlayList.addAll(PlaylistDBDao.getSongsForPlaylist(PlayListSelection));
+        playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
+        playListSelectionID = playlistTable.getSelectionModel().getSelectedItem().getId();
+        setPlaylist.setText(playListSelection);
+        songsInPlayList.addAll(PlaylistDBDao.getSongsForPlaylist(playListSelection));
         titleColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("Title"));
         timeColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("time"));
         setSongsInPlaylist.setItems(songsInPlayList);
     }
 
-    public void addMusicToPlayList(ActionEvent actionEvent){
+    public void addMusicToPlayList(ActionEvent actionEvent) throws SQLException {
         songTitleSelected = songsTable.getSelectionModel().getSelectedItem().getTitle();
         songArtistSelected = songsTable.getSelectionModel().getSelectedItem().getArtist();
         songCategorySelected = songsTable.getSelectionModel().getSelectedItem().getCategory();
         songTimeSelected = songsTable.getSelectionModel().getSelectedItem().getTime();
         songIdSelected = songsTable.getSelectionModel().getSelectedItem().getId();
         songSourceSelected = songsTable.getSelectionModel().getSelectedItem().getSource();
-        System.out.println(songTitleSelected + " " + songArtistSelected + " " + songCategorySelected + " " + songTimeSelected + " " + songIdSelected + " " + songSourceSelected + "here playlist to add==" + PlayListSelection);
+        PlaylistDBDao.addNewSongsToPlayList(playListSelectionID,playListSelection, songIdSelected);
+    }
 
+    public void deletePlaylist(ActionEvent actionEvent) throws SQLException{
+        playlistDBDao.deletePlayList(playListSelection);
+    }
 
+    public void delFromPlaylist(ActionEvent actionEvent) throws  SQLException{
+        System.out.println("nothing for now");
     }
 }

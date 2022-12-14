@@ -59,9 +59,9 @@ public class PlaylistDBDao {
         }
     }
 
-    public static void postNewSongsToPlayList(int id, String playListName, int songId) throws  SQLException{
+    public static void addNewSongsToPlayList(int idPlayList, String playListName, int songId) throws  SQLException{
         try(Connection connection = dataBaseConnection.getConnection()){
-            String sql = "INSERT INTO playlistinfo (Playlistid, name, songsinplaylist) values ("+ id +"'"+playListName+"'"+ songId+");";
+            String sql = "SET ANSI_WARNINGS OFF INSERT INTO playlistinfo (Playlistid, name, songId) values ("+ idPlayList +",'"+playListName+"',"+ songId+") SET ANSI_WARNINGS ON;";
             Statement statement = connection.createStatement();
             if(statement.execute(sql)){
                 ResultSet resultSet = statement.getResultSet();
@@ -79,7 +79,7 @@ public class PlaylistDBDao {
                 while (resultSet.next()){
                     int playlistid = resultSet.getInt("Playlistid");
                     String name = resultSet.getString("name");
-                    int songsinplaylist = resultSet.getInt("songsinplaylist");
+                    int songsinplaylist = resultSet.getInt("songId");
                     SongDBDao.getSongsForPlaylist(songsinplaylist);
                     songForPlayList.add(SongDBDao.getSongsForPlaylist(songsinplaylist).get(i));
                     i++;
@@ -89,9 +89,23 @@ public class PlaylistDBDao {
         }
     }
 
+    public static void deletePlayList(String playListName) throws  SQLException{
+        try(Connection connection = dataBaseConnection.getConnection()){
+            String sql = "Delete playlist where name='"+playListName+"';";
+            Statement statement = connection.createStatement();
+            if(statement.execute(sql)) {
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Deleted"+ playListName);
+            }
+
+        }
+
+    }
+
     public static void main(String[] args) throws SQLException {
         PlaylistDBDao playlistDBDao = new PlaylistDBDao();
-        getSongsForPlaylist("PlayListTest");
+        /*getSongsForPlaylist("PlayListTest");
+        deletePlayList("martin playlist");*/
 
         List<Playlist> allPlaylists = PlaylistDBDao.getAllPlaylists();
     }

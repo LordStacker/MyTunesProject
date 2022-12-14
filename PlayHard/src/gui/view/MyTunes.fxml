@@ -79,7 +79,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" stylesheets="@../css/MainViewSheet.css" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#deletePlaylist" stylesheets="@../css/MainViewSheet.css" text="Delete" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -131,7 +131,7 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="delFromPlaylist" mnemonicParsing="false" stylesheets="@../css/MainViewSheet.css" text="Delete">
+                        <Button mnemonicParsing="false" onAction="#delFromPlaylist" stylesheets="@../css/MainViewSheet.css" text="Delete">
                            <HBox.margin>
                               <Insets left="88.0" />
                            </HBox.margin></Button>
