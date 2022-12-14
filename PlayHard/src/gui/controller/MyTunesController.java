@@ -205,12 +205,13 @@ public class MyTunesController implements Initializable {
     public void openEditPlaylist() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
+        Stage stageEditPlayList = new Stage();
 
-        Stage stage = new Stage();
-        stage.setTitle("Edit a song");
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        listOfStages.add(stageEditPlayList);
+        stageEditPlayList.setTitle("Edit a PlayList");
+        stageEditPlayList.setScene(scene);
+        stageEditPlayList.show();
+        stageEditPlayList.setResizable(false);
     }
     public void playMedia(ActionEvent actionEvent) {
 

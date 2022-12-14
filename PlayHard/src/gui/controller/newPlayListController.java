@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 
 public class newPlayListController {
-    @FXML
-    private BorderPane scenePane;
 
     @FXML
     private Button closeButton, saveButton;
@@ -31,10 +29,6 @@ public class newPlayListController {
 
     public void PlayListName(){
         this.playListName = playListNameField.getText();
-    }
-
-    public String getPlayListName(){
-        return playListName;
     }
 
     public void savePlayList() throws SQLException {
