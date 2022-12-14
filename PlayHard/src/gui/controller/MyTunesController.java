@@ -119,6 +119,7 @@ public class MyTunesController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timePlayListColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         try {
+            playlistTable.refresh();
             playlistTable.setItems(playlistDAO.getAllPlaylists(playlists));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -286,6 +287,7 @@ public class MyTunesController implements Initializable {
     }
 
     public void getPlaylist(MouseEvent mouseEvent) throws SQLException {
+        setSongsInPlaylist.refresh();
         setSongsInPlaylist.getItems().clear();
         songsInPlayList.clear();
         playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
