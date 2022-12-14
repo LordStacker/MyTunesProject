@@ -101,6 +101,18 @@ public class PlaylistDBDao {
         }
     }
 
+    public static void updatePlayListName(String playListNewName, String oldName) throws  SQLException{
+        try (Connection connection = dataBaseConnection.getConnection()) {
+            String sql = "UPDATE playlistinfo set name='" + playListNewName + "'where name='"+oldName+"';";
+            Statement statement = connection.createStatement();
+            if (statement.execute(sql)) {
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Updated" + playListNewName);
+            }
+
+        }
+    }
+
     public static void deletePlayList(String playListName) throws  SQLException {
         try (Connection connection = dataBaseConnection.getConnection()) {
             String sql = "Delete playlist where name='" + playListName + "';";

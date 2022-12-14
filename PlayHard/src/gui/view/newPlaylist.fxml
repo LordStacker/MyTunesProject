@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.newPlayListController">
    <top>
       <VBox prefHeight="24.0" prefWidth="404.0" BorderPane.alignment="CENTER">
@@ -30,14 +29,23 @@
          <children>
             <HBox prefHeight="57.0" prefWidth="404.0">
                <children>
-                  <Label prefHeight="18.0" prefWidth="60.0" text="Name" />
-                  <TextField prefHeight="26.0" prefWidth="298.0" fx:id="playListNameField"/>
+                  <Label prefHeight="18.0" prefWidth="60.0" text="Name">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+                  <TextField fx:id="playListNameField" prefHeight="26.0" prefWidth="298.0" />
                </children>
             </HBox>
             <HBox prefHeight="61.0" prefWidth="404.0">
                <children>
-                  <Button mnemonicParsing="false" text="cancel" onAction="#cancelButtonAction" fx:id="closeButton"/>
-                  <Button mnemonicParsing="false" text="save" onAction="#savePlayList" fx:id="saveButton"/>
+                  <Button fx:id="closeButton" mnemonicParsing="false" onAction="#cancelButtonAction" text="cancel">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePlayList" text="save">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </children>
