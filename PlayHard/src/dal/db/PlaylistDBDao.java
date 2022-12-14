@@ -89,18 +89,32 @@ public class PlaylistDBDao {
         }
     }
 
-    public static void deletePlayList(String playListName) throws  SQLException{
-        try(Connection connection = dataBaseConnection.getConnection()){
-            String sql = "Delete playlist where name='"+playListName+"';";
+    public static void deleteSongFromPlayList(String playListName, int SongID)throws SQLException{
+        try (Connection connection = dataBaseConnection.getConnection()) {
+            String sql = "Delete playlistinfo where name='" + playListName + "' and songID="+SongID+";";
             Statement statement = connection.createStatement();
-            if(statement.execute(sql)) {
+            if (statement.execute(sql)) {
                 ResultSet resultSet = statement.getResultSet();
-                System.out.println("Deleted"+ playListName);
+                System.out.println("Deleted" + playListName);
             }
 
         }
-
     }
+
+    public static void deletePlayList(String playListName) throws  SQLException {
+        try (Connection connection = dataBaseConnection.getConnection()) {
+            String sql = "Delete playlist where name='" + playListName + "';";
+            Statement statement = connection.createStatement();
+            if (statement.execute(sql)) {
+                ResultSet resultSet = statement.getResultSet();
+                System.out.println("Deleted" + playListName);
+            }
+
+        }
+    }
+
+
+
 
     public static void main(String[] args) throws SQLException {
         PlaylistDBDao playlistDBDao = new PlaylistDBDao();
