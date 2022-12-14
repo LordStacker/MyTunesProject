@@ -91,6 +91,8 @@ public class MyTunesController implements Initializable {
     private double songTimeSelected;
     private String songCategorySelected;
 
+    private int songIdOfPlayList;
+
 
 
 
@@ -263,7 +265,7 @@ public class MyTunesController implements Initializable {
     }
 
 //TODO UPDATE THE FUNCTION TO WORK PROPERLY WITH THE NEXT AND PREVIOUS BTNS
-    public void playSelectedSong(MouseEvent mouseEvent) {
+    /*public void playSelectedSong(MouseEvent mouseEvent) {
         mediaPlayer.stop();
         Song selectedSong = songsTable.getSelectionModel().getSelectedItem();
         if (selectedSong != null){
@@ -284,7 +286,7 @@ public class MyTunesController implements Initializable {
             }
 
         }
-    }
+    }*/
 
     public void getPlaylist(MouseEvent mouseEvent) throws SQLException {
         setSongsInPlaylist.refresh();
@@ -306,6 +308,7 @@ public class MyTunesController implements Initializable {
         songTimeSelected = songsTable.getSelectionModel().getSelectedItem().getTime();
         songIdSelected = songsTable.getSelectionModel().getSelectedItem().getId();
         songSourceSelected = songsTable.getSelectionModel().getSelectedItem().getSource();
+        System.out.println(songIdSelected);
         PlaylistDBDao.addNewSongsToPlayList(playListSelectionID,playListSelection, songIdSelected);
     }
 
@@ -314,6 +317,9 @@ public class MyTunesController implements Initializable {
     }
 
     public void delFromPlaylist(ActionEvent actionEvent) throws  SQLException{
-        System.out.println("nothing for now");
+        songIdOfPlayList = setSongsInPlaylist.getSelectionModel().getSelectedItem().getId();
+        playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
+        //TODO REPAIR ID
+        //playlistDBDao.deleteSongFromPlayList(playListSelection,songIdOfPlayList );
     }
 }
