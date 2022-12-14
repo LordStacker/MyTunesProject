@@ -318,9 +318,32 @@ public class MyTunesController implements Initializable {
     }
 
     public void delFromPlaylist(ActionEvent actionEvent) throws  SQLException{
-        songIdOfPlayList = setSongsInPlaylist.getSelectionModel().getSelectedItem().getId();
+       songIdOfPlayList = setSongsInPlaylist.getSelectionModel().getSelectedItem().getId();
         playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
         //TODO REPAIR ID
         //playlistDBDao.deleteSongFromPlayList(playListSelection,songIdOfPlayList );
+    }
+
+    public void playSongsFromPlaylist(MouseEvent mouseEvent) {
+        mediaPlayer.stop();
+        Song song = setSongsInPlaylist.getSelectionModel().getSelectedItem();
+        System.out.println(song.getSource());
+            if (song != null) {
+                media = new Media(song.getSource());
+                mediaPlayer = new MediaPlayer(media);
+                if (running == false){
+                    mediaPlayer.play();
+                    playBtn.setText("⏸");
+                    songLabel.setText(song.getTitle());
+                    running = true;
+                }else {
+                    mediaPlayer.pause();
+                    playBtn.setText("▶");
+                    songLabel.setText(song.getTitle());
+                    running = false;
+                }
+
+            }
+
     }
 }
