@@ -40,7 +40,7 @@ public class SongsDAO {
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
                 Song songListed = new Song(titles[1],titles[1], 11, "atanas",songList.get(i).toURI().toString());
-                songs.add(songListed);
+                this.songs.add(songListed);
             }
         }
         return songs;
@@ -56,8 +56,8 @@ public class SongsDAO {
         SongDBDao.clearSongsDB();
     }
     public ObservableList<Song> getAllSongs(ObservableList<Song> songs){
-        this.songs = songs;
-        return songs;
+        this.songs = this.songs;
+        return this.songs;
     }
 
     private int getNextId(){

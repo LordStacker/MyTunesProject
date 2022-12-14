@@ -40,8 +40,6 @@ public class SongDBDao {
                 String Artist = resultSet.getString("Artist");
                 String Category = resultSet.getString("Category");
                 double Time = resultSet.getDouble("Time");
-                //System.out.println(SongId + " " + Tittle + " " + " " + Source + " " + Artist + " " + Category + " " + Time + " ");
-
             }
 
         }
@@ -51,7 +49,7 @@ public class SongDBDao {
 
     public void postSongs(int id, String title, String artist, String category, double time, String source) throws SQLException{
         try(Connection connection = dataBaseConnection.getConnection()) {
-            String sql = "INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+source+"','"+ artist+"','"+ category +"',"+ time +");";
+            String sql = "SET ANSI_WARNINGS OFF INSERT INTO Songs(SongID,Title,Source,Artist,Category,[time]) VALUES ("+ id +",'"+ title+"','"+source+"','"+ artist+"','"+ category +"',"+ time +") SET ANSI_WARNINGS ON;";
             Statement statement = connection.createStatement();
             if(statement.execute(sql)){
                 ResultSet resultSet = statement.getResultSet();
@@ -100,6 +98,5 @@ public class SongDBDao {
     public static void main(String[] args) throws SQLException {
         SongDBDao songDBDao = new SongDBDao();
         List<Song> allSongs = songDBDao.getAllSongs();
-        getSongsForPlaylist(12);
     }
 }

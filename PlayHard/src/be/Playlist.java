@@ -20,7 +20,6 @@ public class Playlist implements Serializable {
 
     public Playlist(String name, double time){
         this.name = new SimpleStringProperty(name);
-       /* this.songs = songs;*/
         this.time = new SimpleDoubleProperty(time);
         this.id = IdGen.createPlayListId();
         songsInPlaylist = new ArrayList<>();

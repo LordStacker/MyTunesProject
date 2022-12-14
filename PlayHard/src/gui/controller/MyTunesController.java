@@ -6,13 +6,11 @@ import bll.util.Filter;
 import dal.PlaylistDAO;
 import dal.SongsDAO;
 import dal.db.PlaylistDBDao;
-import dal.db.SongDBDao;
 import gui.MyTunes;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,11 +23,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -85,7 +80,16 @@ public class MyTunesController implements Initializable {
 
     private PlaylistDBDao playlistDBDao = new PlaylistDBDao();
 
-    private String PlayListSelection;
+    private String playListSelection;
+
+    private int playListSelectionID;
+
+    private String songTitleSelected;
+    private String songArtistSelected;
+    private int songIdSelected;
+    private String songSourceSelected;
+    private double songTimeSelected;
+    private String songCategorySelected;
 
 
 
@@ -94,7 +98,6 @@ public class MyTunesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songs.addAll(SongsDAO.getAllSongs(SongsDAO.setAllSongs()));
-        System.out.println("HERE ASSHOLE 2" + songs);
         //table view
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("Artist"));
@@ -283,13 +286,32 @@ public class MyTunesController implements Initializable {
     }
 
     public void getPlaylist(MouseEvent mouseEvent) throws SQLException {
+        setSongsInPlaylist.getItems().clear();
         songsInPlayList.clear();
-        PlayListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
-        setPlaylist.setText(PlayListSelection);
-        songsInPlayList.addAll(PlaylistDBDao.getSongsFromPlaylist(PlayListSelection));
-        System.out.println("HERE ASSHOLE" + songsInPlayList);
+        playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
+        playListSelectionID = playlistTable.getSelectionModel().getSelectedItem().getId();
+        setPlaylist.setText(playListSelection);
+        songsInPlayList.addAll(PlaylistDBDao.getSongsForPlaylist(playListSelection));
         titleColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("Title"));
         timeColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("time"));
         setSongsInPlaylist.setItems(songsInPlayList);
+    }
+
+    public void addMusicToPlayList(ActionEvent actionEvent) throws SQLException {
+        songTitleSelected = songsTable.getSelectionModel().getSelectedItem().getTitle();
+        songArtistSelected = songsTable.getSelectionModel().getSelectedItem().getArtist();
+        songCategorySelected = songsTable.getSelectionModel().getSelectedItem().getCategory();
+        songTimeSelected = songsTable.getSelectionModel().getSelectedItem().getTime();
+        songIdSelected = songsTable.getSelectionModel().getSelectedItem().getId();
+        songSourceSelected = songsTable.getSelectionModel().getSelectedItem().getSource();
+        PlaylistDBDao.addNewSongsToPlayList(playListSelectionID,playListSelection, songIdSelected);
+    }
+
+    public void deletePlaylist(ActionEvent actionEvent) throws SQLException{
+        playlistDBDao.deletePlayList(playListSelection);
+    }
+
+    public void delFromPlaylist(ActionEvent actionEvent) throws  SQLException{
+        System.out.println("nothing for now");
     }
 }
