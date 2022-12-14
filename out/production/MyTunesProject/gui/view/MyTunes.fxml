@@ -106,7 +106,7 @@
                                     <Insets left="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TableView fx:id="setSongsInPlaylist" prefHeight="394.0" prefWidth="210.0">
+                              <TableView fx:id="setSongsInPlaylist" onMouseClicked="#playSongsFromPlaylist" prefHeight="394.0" prefWidth="210.0">
                                 <columns>
                                   <TableColumn fx:id="titleColumnPlaylist" prefWidth="114.40003967285156" text="Title" />
                                   <TableColumn fx:id="timeColumnPlaylist" prefWidth="95.20001220703125" text="Time" />

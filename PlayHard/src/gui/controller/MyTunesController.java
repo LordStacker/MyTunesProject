@@ -205,12 +205,13 @@ public class MyTunesController implements Initializable {
     public void openEditPlaylist() throws IOException {
         FXMLLoader loader = new FXMLLoader(MyTunes.class.getResource("view/editPlaylist.fxml"));
         Scene scene = new Scene(loader.load());
+        Stage stageEditPlayList = new Stage();
 
-        Stage stage = new Stage();
-        stage.setTitle("Edit a song");
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        listOfStages.add(stageEditPlayList);
+        stageEditPlayList.setTitle("Edit a PlayList");
+        stageEditPlayList.setScene(scene);
+        stageEditPlayList.show();
+        stageEditPlayList.setResizable(false);
     }
     public void playMedia(ActionEvent actionEvent) {
 
@@ -317,9 +318,32 @@ public class MyTunesController implements Initializable {
     }
 
     public void delFromPlaylist(ActionEvent actionEvent) throws  SQLException{
-        songIdOfPlayList = setSongsInPlaylist.getSelectionModel().getSelectedItem().getId();
+       songIdOfPlayList = setSongsInPlaylist.getSelectionModel().getSelectedItem().getId();
         playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
         //TODO REPAIR ID
         //playlistDBDao.deleteSongFromPlayList(playListSelection,songIdOfPlayList );
+    }
+
+    public void playSongsFromPlaylist(MouseEvent mouseEvent) {
+        mediaPlayer.stop();
+        Song song = setSongsInPlaylist.getSelectionModel().getSelectedItem();
+        System.out.println(song.getSource());
+            if (song != null) {
+                media = new Media(song.getSource());
+                mediaPlayer = new MediaPlayer(media);
+                if (running == false){
+                    mediaPlayer.play();
+                    playBtn.setText("⏸");
+                    songLabel.setText(song.getTitle());
+                    running = true;
+                }else {
+                    mediaPlayer.pause();
+                    playBtn.setText("▶");
+                    songLabel.setText(song.getTitle());
+                    running = false;
+                }
+
+            }
+
     }
 }
