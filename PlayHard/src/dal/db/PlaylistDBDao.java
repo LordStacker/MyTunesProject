@@ -69,13 +69,7 @@ public class PlaylistDBDao {
             }
         }
     }
-    public static void getAllSongsFromPlayList(String name) throws SQLException{
-        try(Connection connection = dataBaseConnection.getConnection()){
-            String sql = "SELECT * FROM playlistinfo where name="+name+";";
-        }
-    }
-
-    public static ObservableList<Song> getSongsFromPlaylist(String input) throws  SQLException{
+    public static ObservableList<Song> getSongsForPlaylist(String input) throws  SQLException{
         int i = 0;
         try(Connection connection = dataBaseConnection.getConnection()){
             String sql = "SELECT * from playlistinfo where name='"+input+"';";
@@ -89,9 +83,6 @@ public class PlaylistDBDao {
                     SongDBDao.getSongsForPlaylist(songsinplaylist);
                     songForPlayList.add(SongDBDao.getSongsForPlaylist(songsinplaylist).get(i));
                     i++;
-                   /* for(int i = 0; i<SongDBDao.getSongsForPlaylist(songsinplaylist).size(); i++){
-                        songForPlayList.add(SongDBDao.getSongsForPlaylist(songsinplaylist).get(i));
-                    }*/
                 }
             }
             return songForPlayList;
@@ -100,7 +91,7 @@ public class PlaylistDBDao {
 
     public static void main(String[] args) throws SQLException {
         PlaylistDBDao playlistDBDao = new PlaylistDBDao();
-        getSongsFromPlaylist("PlayListTest");
+        getSongsForPlaylist("PlayListTest");
 
         List<Playlist> allPlaylists = PlaylistDBDao.getAllPlaylists();
     }

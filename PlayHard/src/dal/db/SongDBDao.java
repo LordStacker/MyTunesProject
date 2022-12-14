@@ -40,8 +40,6 @@ public class SongDBDao {
                 String Artist = resultSet.getString("Artist");
                 String Category = resultSet.getString("Category");
                 double Time = resultSet.getDouble("Time");
-                //System.out.println(SongId + " " + Tittle + " " + " " + Source + " " + Artist + " " + Category + " " + Time + " ");
-
             }
 
         }
@@ -100,6 +98,5 @@ public class SongDBDao {
     public static void main(String[] args) throws SQLException {
         SongDBDao songDBDao = new SongDBDao();
         List<Song> allSongs = songDBDao.getAllSongs();
-        getSongsForPlaylist(12);
     }
 }
