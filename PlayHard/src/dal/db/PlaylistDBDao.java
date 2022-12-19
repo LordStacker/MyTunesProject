@@ -80,7 +80,6 @@ public class PlaylistDBDao {
                     int playlistid = resultSet.getInt("Playlistid");
                     String name = resultSet.getString("name");
                     int songsinplaylist = resultSet.getInt("songId");
-                    SongDBDao.getSongsForPlaylist(songsinplaylist);
                     songForPlayList.add(SongDBDao.getSongsForPlaylist(songsinplaylist).get(i));
                     i++;
                 }
