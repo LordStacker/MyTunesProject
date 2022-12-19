@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" style="-fx-background-color: #001f3f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.newSongController">
    <top>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="saveSong" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #001f3f;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="420.0" text="New/Edit Songs" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="420.0" text="New/Edit Songs" textAlignment="CENTER" textFill="#3eb030">
                <font>
                   <Font size="16.0" />
                </font>
@@ -27,68 +27,71 @@
       </VBox>
    </top>
    <left>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #001f3f;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="175.0" prefWidth="100.0" translateY="-140.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="9.0" />
+                        <Insets top="9.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="12.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="12.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="File:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="File:">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
                   </Text>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="150.0" translateX="125.0" translateY="-150.0">
                <children>
-                  <TextField />
-                  <TextField>
+                  <TextField fx:id="titleField" stylesheets="@../css/newEditSongTabView.css" />
+                  <TextField fx:id="artistField" stylesheets="@../css/newEditSongTabView.css">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <ChoiceBox prefWidth="75.0" />
-                  <Button mnemonicParsing="false" text="More..." translateX="100.0" translateY="-26.0" />
+                  <ChoiceBox fx:id="categoryChoice" prefWidth="75.0" stylesheets="@../css/newEditSongTabView.css" />
+                  <Button fx:id="moreCategories" mnemonicParsing="false" onAction="#addMoreCatogories" stylesheets="@../css/newEditSongTabView.css" text="More..." translateX="100.0" translateY="-26.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField translateY="25.0" />
+                        <TextField fx:id="fileField" prefHeight="31.0" prefWidth="149.0" translateY="25.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField prefWidth="75.0" translateY="-40.0" />
-                        <Button mnemonicParsing="false" text="Choose..." translateX="80.0" translateY="-5.0" />
+                        <TextField fx:id="timeField" prefWidth="75.0" stylesheets="@../css/newEditSongTabView.css" translateY="-40.0" />
+                        <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#chooseButtonAction" stylesheets="@../css/newEditSongTabView.css" text="Choose..." translateX="80.0" translateY="-5.0" />
                      </children>
                   </HBox>
                </children>
@@ -101,14 +104,14 @@
       </Pane>
    </left>
    <right>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox maxHeight="30.0" prefHeight="20.0" prefWidth="154.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Save" translateX="115.0" translateY="75.0">
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButton" stylesheets="@../css/newEditSongTabView.css" text="Save" translateX="115.0" translateY="40.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Cancel" translateX="27.0" translateY="75.0">
+            <Button fx:id="cancelButtone" mnemonicParsing="false" onAction="#cancelButtonAction" stylesheets="@../css/newEditSongTabView.css" text="Cancel" translateX="27.0" translateY="40.0">
                <font>
                   <Font size="10.0" />
                </font>
