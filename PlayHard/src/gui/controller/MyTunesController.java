@@ -349,4 +349,22 @@ public class MyTunesController implements Initializable {
             }
 
     }
+
+
+    public void moveSongDown(ActionEvent actionEvent) {
+        int index = setSongsInPlaylist.getSelectionModel().getSelectedIndex();
+        if (index < setSongsInPlaylist.getItems().size() - 1) {
+            setSongsInPlaylist.getItems().add(index + 1, setSongsInPlaylist.getItems().remove(index));
+            setSongsInPlaylist.getSelectionModel().clearAndSelect(index + 1);
+        }
+    }
+
+    public void moveSongUp(ActionEvent actionEvent) {
+        int index = setSongsInPlaylist.getSelectionModel().getSelectedIndex();
+        if (index > 0) {
+            setSongsInPlaylist.getItems().add(index - 1, setSongsInPlaylist.getItems().remove(index));
+            setSongsInPlaylist.getSelectionModel().clearAndSelect(index - 1);
+        }
+
+    }
 }

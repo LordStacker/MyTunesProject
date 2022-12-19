@@ -1,0 +1,71 @@
+#moreCategories{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#moreCategories:hover{
+     -fx-border-color: black;
+     -fx-background-color: grey;
+     -fx-cursor: hand;
+}
+#cancelButtone{
+       -fx-text-fill:#3eb030 ;
+       -fx-border-color: #3eb030;
+       -fx-background-color: #001f3f;
+}
+#cancelButtone:hover{
+           -fx-border-color: black;
+           -fx-background-color: grey;
+           -fx-cursor: hand;
+}
+#saveButton{
+        -fx-text-fill:#3eb030 ;
+        -fx-border-color: #3eb030;
+        -fx-background-color: #001f3f;
+}
+#saveButton:hover{
+             -fx-border-color: black;
+             -fx-background-color: grey;
+             -fx-cursor: hand;
+}
+#chooseButton{
+                       -fx-text-fill:#3eb030 ;
+                       -fx-border-color: #3eb030;
+                       -fx-background-color: #001f3f;
+}
+#chooseButton:hover{
+              -fx-border-color: black;
+              -fx-background-color: grey;
+              -fx-cursor: hand;
+}
+#titleField{
+     -fx-border-color: #3eb030;
+     -fx-border-width : 0 0 1 0;
+     -fx-background-color: transparent;
+     -fx-text-fill: #3eb030;
+}
+#timeField{
+       -fx-border-color: #3eb030;
+       -fx-border-width : 0 0 1 0;
+       -fx-background-color: transparent;
+       -fx-text-fill: #3eb030;
+}
+#artistField {
+    -fx-border-color: #3eb030;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #3eb030;
+}
+#categoryChoice{
+    -fx-border-color: #3eb030;
+    -fx-border-width : 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #3eb030;
+    -fx-cursor: hand;
+}
+#filePathName{
+    -fx-border-color: #3eb030;
+    -fx-border-width : 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #3eb030;
+}
