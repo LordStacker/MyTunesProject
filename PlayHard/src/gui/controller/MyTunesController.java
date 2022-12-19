@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -150,8 +151,6 @@ public class MyTunesController implements Initializable {
 
             }
         });
-
-
     }
     public void addSong() throws IOException {
         openAddSong();
@@ -197,9 +196,12 @@ public class MyTunesController implements Initializable {
 
         listOfStages.add(stageAddPlayList);
         stageAddPlayList.setTitle("Add a playlist");
+        //TODO INYECCION CONTROLADOR
+       /* loader.<>getController().setMainController(this);*/
         stageAddPlayList.setScene(scene);
         stageAddPlayList.show();
         stageAddPlayList.setResizable(false);
+
     }
 
     public void openEditPlaylist() throws IOException {
@@ -266,7 +268,7 @@ public class MyTunesController implements Initializable {
     }
 
 //TODO UPDATE THE FUNCTION TO WORK PROPERLY WITH THE NEXT AND PREVIOUS BTNS
-    /*public void playSelectedSong(MouseEvent mouseEvent) {
+    public void playSelectedSong(MouseEvent mouseEvent) {
         mediaPlayer.stop();
         Song selectedSong = songsTable.getSelectionModel().getSelectedItem();
         if (selectedSong != null){
@@ -287,19 +289,19 @@ public class MyTunesController implements Initializable {
             }
 
         }
-    }*/
+    }
 
     public void getPlaylist(MouseEvent mouseEvent) throws SQLException {
-        setSongsInPlaylist.refresh();
-        setSongsInPlaylist.getItems().clear();
-        songsInPlayList.clear();
+
         playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
         playListSelectionID = playlistTable.getSelectionModel().getSelectedItem().getId();
         setPlaylist.setText(playListSelection);
-        songsInPlayList.addAll(PlaylistDBDao.getSongsForPlaylist(playListSelection));
+        songsInPlayList = FXCollections.observableArrayList(PlaylistDBDao.getSongsForPlaylist(playListSelection));
+        setSongsInPlaylist.getItems().clear();
+        setSongsInPlaylist.refresh();
+        setSongsInPlaylist.setItems(songsInPlayList);
         titleColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("Title"));
         timeColumnPlaylist.setCellValueFactory(new PropertyValueFactory<>("time"));
-        setSongsInPlaylist.setItems(songsInPlayList);
     }
 
     public void addMusicToPlayList(ActionEvent actionEvent) throws SQLException {
@@ -321,7 +323,7 @@ public class MyTunesController implements Initializable {
        songIdOfPlayList = setSongsInPlaylist.getSelectionModel().getSelectedItem().getId();
         playListSelection = playlistTable.getSelectionModel().getSelectedItem().getName();
         //TODO REPAIR ID
-        //playlistDBDao.deleteSongFromPlayList(playListSelection,songIdOfPlayList );
+       //playlistDBDao.deleteSongFromPlayList(playListSelection,songIdOfPlayList );
     }
 
 
@@ -345,6 +347,24 @@ public class MyTunesController implements Initializable {
                 }
 
             }
+
+    }
+
+
+    public void moveSongDown(ActionEvent actionEvent) {
+        int index = setSongsInPlaylist.getSelectionModel().getSelectedIndex();
+        if (index < setSongsInPlaylist.getItems().size() - 1) {
+            setSongsInPlaylist.getItems().add(index + 1, setSongsInPlaylist.getItems().remove(index));
+            setSongsInPlaylist.getSelectionModel().clearAndSelect(index + 1);
+        }
+    }
+
+    public void moveSongUp(ActionEvent actionEvent) {
+        int index = setSongsInPlaylist.getSelectionModel().getSelectedIndex();
+        if (index > 0) {
+            setSongsInPlaylist.getItems().add(index - 1, setSongsInPlaylist.getItems().remove(index));
+            setSongsInPlaylist.getSelectionModel().clearAndSelect(index - 1);
+        }
 
     }
 }

@@ -40,6 +40,7 @@ public class SongsDAO {
                 title = songList.get(i).toString();
                 titles = title.split("-", 2);
                 Song songListed = new Song(titles[1],titles[1], 11, "atanas",songList.get(i).toURI().toString());
+                System.out.println(titles[1]);
                 this.songs.add(songListed);
             }
         }
