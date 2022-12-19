@@ -7,6 +7,7 @@ import dal.PlaylistDAO;
 import dal.SongsDAO;
 import dal.db.PlaylistDBDao;
 import gui.MyTunes;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -47,6 +48,9 @@ public class MyTunesController implements Initializable {
     public TableColumn<Playlist, String> nameColumn;
     public TableColumn<Playlist, Integer> timePlayListColumn;
     public Label setPlaylist;
+    public Button moveSongDownBtn , moveSongUpBtn;
+
+    ReadOnlyIntegerProperty selectedSongIndex;
 
 
     private ArrayList<Stage> listOfStages = new ArrayList<>();
@@ -132,6 +136,11 @@ public class MyTunesController implements Initializable {
         media = new Media(SongsDAO.setMedia(songId));
         mediaPlayer = new MediaPlayer(media);
         songLabel.setText(SongsDAO.getNameSong(songId));
+
+        //   Song songToPlay = setSongsInPlaylist.getSelectionModel().getSelectedItem();
+       // media = new Media(songToPlay.getSource());
+       //mediaPlayer = new MediaPlayer(media);
+      //  songLabel.setText(songToPlay.getTitle());
 
         if(mediaPlayer != null){
             volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -343,7 +352,26 @@ public class MyTunesController implements Initializable {
                     running = false;
                 }
 
+
             }
+
+    }
+
+
+    public void moveSongDown(ActionEvent actionEvent) {
+        int index = setSongsInPlaylist.getSelectionModel().getSelectedIndex();
+        if (index < setSongsInPlaylist.getItems().size()) {
+            setSongsInPlaylist.getItems().add(index + 1, setSongsInPlaylist.getItems().remove(index));
+            setSongsInPlaylist.getSelectionModel().clearAndSelect(index + 1);
+        }
+    }
+
+    public void moveSongUp(ActionEvent actionEvent) {
+        int index = setSongsInPlaylist.getSelectionModel().getSelectedIndex();
+        if (index > 0) {
+            setSongsInPlaylist.getItems().add(index - 1, setSongsInPlaylist.getItems().remove(index));
+            setSongsInPlaylist.getSelectionModel().clearAndSelect(index - 1);
+        }
 
     }
 }

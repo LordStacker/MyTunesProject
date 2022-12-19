@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.editSongController">
+<BorderPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" style="-fx-background-color: #001f3f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.editSongController">
    <top>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="420.0" text="Edit song" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="420.0" text="Edit song" textAlignment="CENTER" textFill="#3eb030">
                <font>
                   <Font size="16.0" />
                </font>
@@ -31,42 +31,42 @@
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="175.0" prefWidth="100.0" translateY="-140.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="9.0" />
+                        <Insets top="9.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category:">
+                  <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="12.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Text>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="150.0" translateX="125.0" translateY="-150.0">
                <children>
-                  <TextField />
-                  <TextField>
+                  <TextField fx:id="titleField" stylesheets="@../css/newEditSongTabView.css" />
+                  <TextField fx:id="artistField" stylesheets="@../css/newEditSongTabView.css">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <ChoiceBox prefWidth="75.0" />
-                  <Button mnemonicParsing="false" text="More..." translateX="100.0" translateY="-26.0" />
+                  <ChoiceBox fx:id="categoryChoice" prefWidth="75.0" stylesheets="@../css/newEditSongTabView.css" />
+                  <Button fx:id="moreCategories" mnemonicParsing="false" stylesheets="@../css/newEditSongTabView.css" text="More..." translateX="100.0" translateY="-26.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="10.0" />
@@ -79,12 +79,12 @@
    <right>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveEditSong" mnemonicParsing="false" onAction="#saveEditButton" text="Save" translateX="115.0" translateY="75.0">
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveEditButton" stylesheets="@../css/newEditSongTabView.css" text="Save" translateX="115.0" translateY="75.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Button>
-            <Button fx:id="cancelEditSong" mnemonicParsing="false" onAction="#cancelEditButtonAction" text="Cancel" translateX="27.0" translateY="75.0">
+            <Button fx:id="cancelButtone" mnemonicParsing="false" onAction="#cancelEditButtonAction" stylesheets="@../css/newEditSongTabView.css" text="Cancel" translateX="27.0" translateY="75.0">
                <font>
                   <Font size="10.0" />
                </font>
