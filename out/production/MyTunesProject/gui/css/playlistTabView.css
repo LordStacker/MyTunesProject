@@ -1,0 +1,17 @@
+#closeButton{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}#closeButton:hover{
+     -fx-border-color: black;
+     -fx-background-color: grey;
+     -fx-cursor: hand;
+ }#saveButton{
+       -fx-text-fill:#3eb030 ;
+       -fx-border-color: #3eb030;
+       -fx-background-color: #001f3f;
+   }#saveButton:hover{
+          -fx-border-color: black;
+          -fx-background-color: grey;
+          -fx-cursor: hand;
+       }

@@ -1,0 +1,179 @@
+.root{
+    -fx-background-color: #000;
+}
+#pane{
+    -fx-background-color: #001f3f;
+
+}
+
+#playlistTable{
+    -fx-background-color: transparent;
+    -fx-padding: 2 0 2 10px;
+    -fx-border-width: 0, 0, 0, 0;
+}
+#playlistTable:hover {
+    -fx-background-color: #001f3f;
+    -fx-text-background-color: #001f3f;
+    -fx-cursor: hand;
+}
+
+#searchBar{
+    -fx-border-color: #3eb030;
+    -fx-border-width : 0 0 1 0;
+     -fx-background-color: transparent;
+    -fx-text-fill: #3eb030;
+}
+#topBox{
+    -fx-background-color: #001f3f;
+}#closeBtn{
+    -fx-text-fill:#3eb030 ;
+     -fx-border-color: #3eb030;
+     -fx-background-color: #001f3f;
+ }
+#closeBtn:hover{
+     -fx-border-color: black;
+     -fx-background-color: grey;
+     -fx-cursor: hand; }
+#volumeSlider {
+    -fx-border-color: #3eb030;
+
+    -fx-cursor: hand;
+
+}
+#volumeSlider:hover {
+    opacity: 1.5;
+}
+
+#deleteSong {
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}#deleteSong:hover{
+     -fx-border-color: black;
+     -fx-background-color: grey;
+     -fx-cursor: hand;
+ }
+ #moveSongDownBtn{
+     -fx-text-fill:#3eb030 ;
+     -fx-border-color: #3eb030;
+     -fx-background-color: #001f3f;
+ }
+#moveSongDownBtn:hover{
+       -fx-border-color: black;
+       -fx-background-color: grey;
+       -fx-cursor: hand;
+   }
+#moveSongUpBtn{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#moveSongUpBtn:hover{
+           -fx-border-color: black;
+           -fx-background-color: grey;
+           -fx-cursor: hand;
+}
+#moveSongToPlaylist{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+ #moveSongToPlaylist:hover{
+        -fx-border-color: black;
+        -fx-background-color: grey;
+        -fx-cursor: hand;
+
+    }
+ #playBtn{
+     -fx-text-fill:#3eb030 ;
+     -fx-border-color: #3eb030;
+     -fx-background-color: #001f3f;
+ }
+#playBtn:hover{
+    -fx-border-color: black;
+    -fx-background-color: grey;
+    -fx-cursor: hand;
+     }
+#nextSongBtn{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#nextSongBtn:hover{
+    -fx-border-color: black;
+    -fx-background-color: grey;
+    -fx-cursor: hand;
+}
+#previousSongBtn{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#previousSongBtn:hover{
+    -fx-border-color: black;
+    -fx-background-color: grey;
+    -fx-cursor: hand;
+}
+#deleteSongFromPlaylistBtn{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#deleteSongFromPlaylistBtn:hover{
+    -fx-border-color: black;
+    -fx-background-color: grey;
+    -fx-cursor: hand;
+}
+#newSong{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#newSong:hover{
+     -fx-border-color: black;
+     -fx-background-color: grey;
+     -fx-cursor: hand;
+ }
+#editSongButton{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#editSongButton:hover{
+       -fx-border-color: black;
+       -fx-background-color: grey;
+       -fx-cursor: hand;
+   }
+#newPlaylist{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+  #newPlaylist:hover{
+      -fx-border-color: black;
+      -fx-background-color: grey;
+      -fx-cursor: hand;
+  }
+  #editPlaylist{
+      -fx-text-fill:#3eb030 ;
+      -fx-border-color: #3eb030;
+      -fx-background-color: #001f3f;
+  }
+#editPlaylist:hover{
+         -fx-border-color: black;
+         -fx-background-color: grey;
+         -fx-cursor: hand;
+     }
+#deletePlaylist{
+    -fx-text-fill:#3eb030 ;
+    -fx-border-color: #3eb030;
+    -fx-background-color: #001f3f;
+}
+#deletePlaylist:hover{
+    -fx-border-color: black;
+    -fx-background-color: grey;
+    -fx-cursor: hand;
+}
+
+
+
