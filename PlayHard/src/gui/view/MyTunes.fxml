@@ -3,9 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -13,13 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
+<BorderPane fx:id="pane" stylesheets="@../css/MainViewSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
    <top>
-      <VBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+      <VBox fx:id="topBox" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" stylesheets="@../css/MainViewSheet.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="PlayHard" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-cursor: pointer;" text="PlayHard" textAlignment="CENTER" textFill="#3eb030" VBox.vgrow="ALWAYS">
                <font>
-                  <Font name="Book Antiqua Bold" size="30.0" />
+                  <Font name="Britannic Bold" size="30.0" />
                </font>
             </Label>
          </children>
@@ -38,25 +39,29 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="⏪">
+                        <Slider fx:id="volumeSlider" max="100.0" stylesheets="@../css/MainViewSheet.css" value="50.0">
                            <HBox.margin>
-                              <Insets left="50.0" />
+                              <Insets left="60.0" top="50.0" />
+                           </HBox.margin>
+                        </Slider>
+                        <Button fx:id="previousSongBtn" mnemonicParsing="false" onAction="#previousMedia" stylesheets="@../css/MainViewSheet.css" text="⏪">
+                           <HBox.margin>
+                              <Insets left="-110.0" />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" text="▷">
+                        <Button fx:id="playBtn" mnemonicParsing="false" onAction="#playMedia" prefHeight="26.0" prefWidth="41.0" stylesheets="@../css/MainViewSheet.css" text="▶">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" text="⏩">
+                        <Button fx:id="nextSongBtn" mnemonicParsing="false" onAction="#nextMedia" stylesheets="@../css/MainViewSheet.css" text="⏩">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin></Button>
                      </children>
                   </HBox>
-                  <TableView prefHeight="422.0" prefWidth="256.0">
+                  <TableView fx:id="playlistTable" onMouseClicked="#getPlaylist" prefHeight="422.0" prefWidth="256.0" stylesheets="@../css/MainViewSheet.css">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Name" />
-                      <TableColumn prefWidth="75.0" text="Song" />
-                        <TableColumn prefWidth="104.79998779296875" text="Time" />
+                      <TableColumn fx:id="nameColumn" prefWidth="122.39998948574066" style="-fx-background-color: transparent;" text="Name" />
+                        <TableColumn fx:id="timePlayListColumn" prefWidth="122.4000015258789" style="-fx-background-color: transparent;" text="Time" />
                     </columns>
                      <VBox.margin>
                         <Insets left="10.0" />
@@ -64,17 +69,17 @@
                   </TableView>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="newPlaylist" mnemonicParsing="false" onAction="#addPlaylist" text="New..">
+                        <Button fx:id="newPlaylist" mnemonicParsing="false" onAction="#addPlaylist" stylesheets="@../css/MainViewSheet.css" text="New..">
                            <HBox.margin>
                               <Insets left="10.0" right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="editPlaylist" mnemonicParsing="false" onAction="#editPlaylist" text="Edit...">
+                        <Button fx:id="editPlaylist" mnemonicParsing="false" onAction="#editPlaylist" stylesheets="@../css/MainViewSheet.css" text="Edit...">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Delete" />
+                        <Button fx:id="deletePlaylist" layoutX="120.0" layoutY="10.0" mnemonicParsing="false" onAction="#deletePlaylist" stylesheets="@../css/MainViewSheet.css" text="Delete" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -86,31 +91,47 @@
                <children>
                   <HBox prefHeight="98.0" prefWidth="256.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SONG" />
+                        <Label fx:id="songLabel" prefHeight="18.0" prefWidth="256.0" stylesheets="@../css/MainViewSheet.css" text="Song" textFill="#3eb030">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin></Label>
                      </children>
                   </HBox>
                   <HBox prefHeight="414.0" prefWidth="215.0">
                      <children>
-                        <ListView prefHeight="414.0" prefWidth="198.0">
+                        <VBox prefHeight="407.0" prefWidth="210.0">
+                           <children>
+                              <Label fx:id="setPlaylist" prefHeight="33.0" prefWidth="206.0" text="Choose your playlist..." textAlignment="CENTER" textFill="#3eb030">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TableView fx:id="setSongsInPlaylist" onMouseClicked="#playSongsFromPlaylist" prefHeight="394.0" prefWidth="210.0">
+                                <columns>
+                                  <TableColumn fx:id="titleColumnPlaylist" prefWidth="114.40003967285156" text="Title" />
+                                  <TableColumn fx:id="timeColumnPlaylist" prefWidth="95.20001220703125" text="Time" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        <Button fx:id="moveSongToPlaylist" mnemonicParsing="false" onAction="#addMusicToPlayList" prefHeight="26.0" prefWidth="35.0" stylesheets="@../css/MainViewSheet.css" text="⬅">
                            <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </ListView>
-                        <Button mnemonicParsing="false" text="⬅">
-                           <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="5.0" top="25.0" />
                            </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="⬇" />
-                        <Button mnemonicParsing="false" text="⬆">
+                        <Button fx:id="moveSongDownBtn" mnemonicParsing="false" onAction="#moveSongDown" stylesheets="@../css/MainViewSheet.css" text="⬇" />
+                        <Button fx:id="moveSongUpBtn" mnemonicParsing="false" onAction="#moveSongUp" stylesheets="@../css/MainViewSheet.css" text="⬆">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" text="Delete">
+                        <Button fx:id="deleteSongFromPlaylistBtn" mnemonicParsing="false" onAction="#delFromPlaylist" stylesheets="@../css/MainViewSheet.css" text="Delete">
                            <HBox.margin>
                               <Insets left="88.0" />
                            </HBox.margin></Button>
@@ -125,15 +146,23 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:" />
+                        <Text fill="#3eb030" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin></Text>
+                        <TextField fx:id="searchBar" prefHeight="26.0" prefWidth="246.0" stylesheets="@../css/MainViewSheet.css">
+                           <HBox.margin>
+                              <Insets left="10.0" top="26.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
-                  <TableView prefHeight="409.0" prefWidth="325.0">
+                  <TableView fx:id="songsTable" prefHeight="409.0" prefWidth="325.0">
                     <columns>
-                      <TableColumn prefWidth="76.800048828125" text="Title" />
-                      <TableColumn prefWidth="72.79998779296875" text="Artist" />
-                        <TableColumn prefWidth="76.800048828125" text="Category" />
-                        <TableColumn prefWidth="99.199951171875" text="Time" />
+                      <TableColumn fx:id="titleColumn" prefWidth="76.800048828125" text="Title" />
+                      <TableColumn fx:id="artistColumn" prefWidth="72.79998779296875" text="Artist" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="76.800048828125" text="Category" />
+                        <TableColumn fx:id="timeColumn" prefWidth="99.199951171875" text="Time" />
                     </columns>
                      <VBox.margin>
                         <Insets right="10.0" />
@@ -141,16 +170,16 @@
                   </TableView>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="newSong" mnemonicParsing="false" onAction="#addSong" text="New..">
+                        <Button fx:id="newSong" mnemonicParsing="false" onAction="#addSong" stylesheets="@../css/MainViewSheet.css" text="New..">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="editSongButton" mnemonicParsing="false" onAction="#editSong" text="Edit...">
+                        <Button fx:id="editSongButton" mnemonicParsing="false" onAction="#editSong" stylesheets="@../css/MainViewSheet.css" text="Edit...">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" text="Delete" />
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Close">
+                        <Button fx:id="deleteSong" mnemonicParsing="false" stylesheets="@../css/MainViewSheet.css" text="Delete" />
+                        <Button fx:id="closeBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#exitApp" style="-fx-cursor: hand;" stylesheets="@../css/MainViewSheet.css" text="Close">
                            <HBox.margin>
                               <Insets left="130.0" />
                            </HBox.margin></Button>
