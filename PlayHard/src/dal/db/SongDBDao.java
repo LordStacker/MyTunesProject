@@ -6,9 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.File;
-
 import java.sql.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +82,7 @@ public class SongDBDao {
                     String Artist = resultSet.getString("Artist");
                     String Category = resultSet.getString("Category");
                     double Time = resultSet.getDouble("Time");
+                    System.out.println(Source);
                     Song songs = new Song(Artist, Tittle, Time, Category, Source);
                     songForPlayList.add(songs);
                 }
